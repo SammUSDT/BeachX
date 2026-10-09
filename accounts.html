@@ -15,22 +15,6 @@ body::before{content:'';position:fixed;top:-20%;left:-10%;width:400px;height:400
 .card{background:var(--c);backdrop-filter:blur(30px);border-radius:24px;padding:24px 20px;border:1px solid var(--b);margin-bottom:16px}
 .ct{font-size:18px;font-weight:700;margin-bottom:4px}
 .cs{font-size:12px;color:var(--d);margin-bottom:20px}
-.ig{display:flex;align-items:center;background:rgba(0,0,0,.3);border:1px solid var(--b);border-radius:14px;padding:12px 16px;margin-bottom:12px}
-.ig .ic{font-size:16px;margin-right:12px;color:var(--dd)}
-.ig input{flex:1;background:transparent;border:none;outline:none;color:#fff;font-size:14px}
-.ig input::placeholder{color:var(--dd)}
-.btn{width:100%;padding:16px;border-radius:14px;border:none;background:linear-gradient(135deg,#00d4ff,#0088cc);color:#000;font-size:14px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:.3s;margin-top:8px}
-.btn:hover{transform:translateY(-2px)}
-.btn-danger{background:linear-gradient(135deg,#ef4444,#dc2626)!important;color:#fff!important}
-.btn-back{width:100%;padding:14px;border-radius:14px;border:1px solid var(--b);background:transparent;color:var(--d);font-size:13px;cursor:pointer;transition:.3s;margin-top:16px}
-.btn-back:hover{color:#fff;border-color:var(--p)}
-.toggle-row{display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,.3);border:1px solid var(--b);border-radius:14px;padding:14px 16px;margin-bottom:12px}
-.toggle-row .label{font-size:13px;color:#fff;font-weight:600}
-.toggle-row .sub{font-size:11px;color:var(--d);margin-top:2px}
-.toggle{width:48px;height:26px;background:rgba(255,255,255,.1);border-radius:20px;position:relative;cursor:pointer;transition:.3s;flex-shrink:0}
-.toggle.on{background:linear-gradient(135deg,#00d4ff,#0088cc)}
-.toggle::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;background:#fff;border-radius:50%;transition:.3s}
-.toggle.on::after{left:25px}
 .acc-item{background:rgba(0,0,0,.3);border:1px solid var(--b);border-radius:14px;padding:14px 16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:10px}
 .acc-item .info{text-align:left;flex:1;min-width:0}
 .acc-item .info .name{font-size:14px;font-weight:700;color:#fff;display:flex;align-items:center;gap:6px}
@@ -43,6 +27,8 @@ body::before{content:'';position:fixed;top:-20%;left:-10%;width:400px;height:400
 .acc-item .actions{display:flex;gap:6px;flex-shrink:0}
 .btn-small{padding:8px 14px;font-size:11px;font-weight:700;border-radius:10px;border:none;cursor:pointer;background:#ef4444;color:#fff;transition:.3s}
 .btn-small:hover{transform:scale(1.05)}
+.btn-back{width:100%;padding:14px;border-radius:14px;border:1px solid var(--b);background:transparent;color:var(--d);font-size:13px;cursor:pointer;transition:.3s;margin-top:16px}
+.btn-back:hover{color:#fff;border-color:var(--p)}
 .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:rgba(0,212,255,.95);color:#000;padding:14px 28px;border-radius:60px;font-size:13px;font-weight:600;display:none;z-index:300;box-shadow:0 10px 40px rgba(0,212,255,.3);max-width:90%;text-align:center}
 .toast.show{display:block;animation:toastIn .3s ease}
 .toast.error{background:rgba(239,68,68,.95);color:#fff}
@@ -57,35 +43,6 @@ body::before{content:'';position:fixed;top:-20%;left:-10%;width:400px;height:400
 </div>
 
 <div class="card">
-<div class="ct">Tambah Akun Baru</div>
-<div class="cs">Buat akun buat user lain</div>
-
-<div class="ig">
-<span class="ic">👤</span>
-<input type="text" id="newUser" placeholder="Username baru" autocomplete="off">
-</div>
-<div class="ig">
-<span class="ic">🔒</span>
-<input type="text" id="newPass" placeholder="Password baru">
-</div>
-
-<div class="toggle-row">
-<div>
-<div class="label">Use Timer</div>
-<div class="sub">Aktifkan kalau mau expire otomatis</div>
-</div>
-<div class="toggle" id="timerToggle" onclick="toggleTimer()"></div>
-</div>
-
-<div class="ig" id="timerInputWrap" style="display:none">
-<span class="ic">⏱️</span>
-<input type="number" id="timerDays" placeholder="[ ] Day" min="1" value="1">
-</div>
-
-<button class="btn" onclick="createAccount()">+ TAMBAH AKUN</button>
-</div>
-
-<div class="card">
 <div class="ct">Daftar Akun</div>
 <div class="cs">Kelola semua akun</div>
 <div id="accountList"></div>
@@ -95,14 +52,50 @@ body::before{content:'';position:fixed;top:-20%;left:-10%;width:400px;height:400
 <div class="toast" id="toast"></div>
 
 <script>
+/* ============================================
+   AKUN HARDCODED — EDIT MANUAL DI SINI
+   ============================================ */
+var DEFAULT_ACCOUNTS = {
+  "DevOffc": {
+    password: "DevOffc123",
+    role: "developer",
+    permanent: true
+  },
+  "Hallowz": {
+    password: "Hallowz1",
+    role: "user",
+    permanent: true
+  },
+  "user2": {
+    password: "pass456",
+    role: "user",
+    permanent: false,
+    expiresAt: 1798761600000,
+    days: 30
+  },
+  "user3": {
+    password: "pass789",
+    role: "user",
+    permanent: true
+  }
+};
+
 var ACCOUNTS_KEY = 'beachx_accounts';
-var DEV_USERNAME = 'DevOffc';
 
 function getAccounts(){
-try{return JSON.parse(localStorage.getItem(ACCOUNTS_KEY)) || {};}catch(e){return {}}
+var local = {};
+try{local = JSON.parse(localStorage.getItem(ACCOUNTS_KEY)) || {};}catch(e){}
+var merged = {};
+Object.keys(DEFAULT_ACCOUNTS).forEach(function(k){ merged[k] = DEFAULT_ACCOUNTS[k]; });
+Object.keys(local).forEach(function(k){ merged[k] = local[k]; });
+return merged;
 }
+
 function saveAccounts(acc){
-localStorage.setItem(ACCOUNTS_KEY, JSON.stringify(acc));
+var local = {};
+try{local = JSON.parse(localStorage.getItem(ACCOUNTS_KEY)) || {};}catch(e){}
+Object.keys(acc).forEach(function(k){ local[k] = acc[k]; });
+localStorage.setItem(ACCOUNTS_KEY, JSON.stringify(local));
 }
 
 function checkExpired(){
@@ -119,50 +112,6 @@ changed = true;
 });
 if(changed) saveAccounts(acc);
 return changed;
-}
-
-var timerOn = false;
-function toggleTimer(){
-timerOn = !timerOn;
-document.getElementById('timerToggle').classList.toggle('on', timerOn);
-document.getElementById('timerInputWrap').style.display = timerOn ? 'flex' : 'none';
-}
-
-function createAccount(){
-var u=document.getElementById('newUser').value.trim();
-var p=document.getElementById('newPass').value.trim();
-
-if(!u||!p){showToast('Isi username & password!',true);return}
-if(u.length < 3){showToast('Username minimal 3 karakter!',true);return}
-if(p.length < 4){showToast('Password minimal 4 karakter!',true);return}
-
-var acc = getAccounts();
-if(acc[u]){showToast('❌ Username sudah dipakai!',true);return;}
-
-var newAcc = {
-password: p,
-role: 'user',
-created: Date.now(),
-permanent: !timerOn
-};
-
-if(timerOn){
-var days = parseInt(document.getElementById('timerDays').value) || 1;
-if(days < 1) days = 1;
-newAcc.expiresAt = Date.now() + (days * 24 * 60 * 60 * 1000);
-newAcc.days = days;
-}
-
-acc[u] = newAcc;
-saveAccounts(acc);
-
-document.getElementById('newUser').value='';
-document.getElementById('newPass').value='';
-document.getElementById('timerDays').value='1';
-if(timerOn){toggleTimer();}
-
-showToast('✅ Akun '+u+' berhasil dibuat!');
-renderAccounts();
 }
 
 function killAccount(username){
