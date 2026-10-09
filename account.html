@@ -10,63 +10,62 @@ body{background:#05060a;color:#fff;min-height:100vh;display:flex;justify-content
 body::before{content:'';position:absolute;top:-30%;left:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,212,255,.08),transparent 70%);border-radius:50%;animation:float 8s ease-in-out infinite;z-index:0}
 body::after{content:'';position:absolute;bottom:-30%;right:-20%;width:500px;height:500px;background:radial-gradient(circle,rgba(168,85,247,.06),transparent 70%);border-radius:50%;animation:float 10s ease-in-out infinite reverse;z-index:0}
 @keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-30px)}}
-
 .banner-video{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.08;z-index:0;pointer-events:none}
-
 :root{--p:#00d4ff;--c:rgba(17,17,24,.7);--b:rgba(255,255,255,.06);--d:#666;--dd:#333}
-
 .page{display:none;flex-direction:column;justify-content:center;align-items:center;width:100%;max-width:400px;text-align:center;position:relative;z-index:1;animation:fadeIn .5s ease}
 .page.active{display:flex}
 @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-
-.logo{width:110px;height:110px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-bottom:24px;border:2px solid rgba(0,212,255,.2);box-shadow:0 0 60px rgba(0,212,255,.15),inset 0 0 30px rgba(0,212,255,.05);animation:pulse 3s ease-in-out infinite;background:linear-gradient(135deg,rgba(0,212,255,.1),rgba(168,85,247,.1))}
+.logo{width:110px;height:110px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-bottom:24px;border:2px solid rgba(0,212,255,.2);box-shadow:0 0 60px rgba(0,212,255,.15);animation:pulse 3s ease-in-out infinite;background:linear-gradient(135deg,rgba(0,212,255,.1),rgba(168,85,247,.1))}
 .logo img{width:100%;height:100%;object-fit:cover}
 @keyframes pulse{0%,100%{box-shadow:0 0 60px rgba(0,212,255,.15)}50%{box-shadow:0 0 90px rgba(0,212,255,.3)}}
-
 .brand{font-size:38px;font-weight:900;letter-spacing:8px;background:linear-gradient(135deg,#00d4ff,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px;background-size:200% 200%;animation:gradient 4s ease infinite}
 @keyframes gradient{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-
 .bsub{font-size:10px;color:var(--dd);letter-spacing:6px;margin-bottom:48px;text-transform:uppercase}
-
-.card{background:var(--c);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-radius:28px;padding:32px 28px;width:100%;border:1px solid var(--b);box-shadow:0 20px 60px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.03)}
-
-.ct{font-size:24px;font-weight:700;margin-bottom:6px;text-align:left;background:linear-gradient(135deg,#fff,#aaa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.cs{font-size:13px;color:var(--d);margin-bottom:28px;text-align:left}
-
-.ig{display:flex;align-items:center;background:rgba(0,0,0,.3);border:1px solid var(--b);border-radius:16px;padding:14px 18px;margin-bottom:14px;transition:.3s}
-.ig:focus-within{border-color:var(--p);box-shadow:0 0 0 4px rgba(0,212,255,.05),0 0 20px rgba(0,212,255,.1)}
-.ig .ic{font-size:18px;margin-right:14px;color:var(--dd);transition:.3s}
-.ig:focus-within .ic{color:var(--p)}
+.card{background:var(--c);backdrop-filter:blur(30px);border-radius:28px;padding:32px 28px;width:100%;border:1px solid var(--b);box-shadow:0 20px 60px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.03);margin-bottom:16px}
+.ct{font-size:22px;font-weight:700;margin-bottom:6px;text-align:left;background:linear-gradient(135deg,#fff,#aaa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.cs{font-size:12px;color:var(--d);margin-bottom:24px;text-align:left}
+.ig{display:flex;align-items:center;background:rgba(0,0,0,.3);border:1px solid var(--b);border-radius:14px;padding:12px 16px;margin-bottom:12px;transition:.3s}
+.ig:focus-within{border-color:var(--p);box-shadow:0 0 0 4px rgba(0,212,255,.05)}
+.ig .ic{font-size:16px;margin-right:12px;color:var(--dd)}
 .ig input{flex:1;background:transparent;border:none;outline:none;color:#fff;font-size:14px}
 .ig input::placeholder{color:var(--dd)}
-.tp{cursor:pointer;color:var(--dd);font-size:16px;transition:.3s}
-.tp:hover{color:var(--p)}
-
-.btn{width:100%;padding:18px;border-radius:16px;border:none;background:linear-gradient(135deg,#00d4ff,#0088cc);color:#000;font-size:15px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:.3s;margin-top:10px;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(0,212,255,.2)}
-.btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);transition:.5s}
-.btn:hover::before{left:100%}
-.btn:hover{transform:translateY(-2px);box-shadow:0 15px 40px rgba(0,212,255,.3)}
-.btn:active{transform:translateY(0) scale(.98)}
-
-.btn-outline{width:100%;padding:18px;border-radius:16px;border:1px solid var(--p);background:transparent;color:var(--p);font-size:15px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:.3s;margin-top:12px}
-.btn-outline:hover{background:rgba(0,212,255,.08);transform:translateY(-2px)}
-.btn-outline:active{transform:translateY(0) scale(.98)}
-
-.btn-buy{width:100%;padding:18px;border-radius:16px;border:none;background:linear-gradient(135deg,#f59e0b,#d97706);color:#000;font-size:15px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:.3s;margin-top:12px;box-shadow:0 10px 30px rgba(245,158,11,.2)}
-.btn-buy:hover{transform:translateY(-2px);box-shadow:0 15px 40px rgba(245,158,11,.3)}
-.btn-buy:active{transform:translateY(0) scale(.98)}
-
-.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:rgba(0,212,255,.95);color:#000;padding:14px 28px;border-radius:60px;font-size:13px;font-weight:600;display:none;z-index:300;box-shadow:0 10px 40px rgba(0,212,255,.3)}
+.tp{cursor:pointer;color:var(--dd);font-size:16px}
+.btn{width:100%;padding:16px;border-radius:14px;border:none;background:linear-gradient(135deg,#00d4ff,#0088cc);color:#000;font-size:14px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:.3s;margin-top:8px;box-shadow:0 10px 30px rgba(0,212,255,.2)}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:scale(.98)}
+.btn-outline{width:100%;padding:16px;border-radius:14px;border:1px solid var(--p);background:transparent;color:var(--p);font-size:14px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:.3s;margin-top:10px}
+.btn-outline:hover{background:rgba(0,212,255,.08)}
+.btn-buy{width:100%;padding:16px;border-radius:14px;border:none;background:linear-gradient(135deg,#f59e0b,#d97706);color:#000;font-size:14px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:.3s;margin-top:10px}
+.btn-buy:hover{transform:translateY(-2px)}
+.btn-danger{background:linear-gradient(135deg,#ef4444,#dc2626)!important;color:#fff!important;box-shadow:0 10px 30px rgba(239,68,68,.2)!important}
+.btn-small{padding:8px 14px!important;font-size:11px!important;letter-spacing:1px!important;width:auto!important;margin-top:0!important;border-radius:10px!important}
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:rgba(0,212,255,.95);color:#000;padding:14px 28px;border-radius:60px;font-size:13px;font-weight:600;display:none;z-index:300;box-shadow:0 10px 40px rgba(0,212,255,.3);max-width:90%;text-align:center}
 .toast.show{display:block;animation:toastIn .3s ease}
+.toast.error{background:rgba(239,68,68,.95);color:#fff}
 @keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
-
 .sound-btn{position:fixed;top:20px;right:20px;width:44px;height:44px;border-radius:50%;background:rgba(17,17,24,.7);backdrop-filter:blur(20px);border:1px solid var(--b);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:100;transition:.3s;font-size:18px}
 .sound-btn:hover{border-color:var(--p);transform:scale(1.1)}
-
 .price-box{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.15);border-radius:16px;padding:16px;margin-bottom:20px;text-align:left}
 .price-box .label{font-size:10px;color:#f59e0b;letter-spacing:2px;margin-bottom:4px;text-transform:uppercase}
 .price-box .price{font-size:24px;font-weight:800;color:#fff}
 .price-box .desc{font-size:11px;color:var(--d);margin-top:4px}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,.3);border:1px solid var(--b);border-radius:14px;padding:14px 16px;margin-bottom:12px}
+.toggle-row .label{font-size:13px;color:#fff;font-weight:600}
+.toggle-row .sub{font-size:11px;color:var(--d);margin-top:2px}
+.toggle{width:48px;height:26px;background:rgba(255,255,255,.1);border-radius:20px;position:relative;cursor:pointer;transition:.3s;flex-shrink:0}
+.toggle.on{background:linear-gradient(135deg,#00d4ff,#0088cc)}
+.toggle::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;background:#fff;border-radius:50%;transition:.3s}
+.toggle.on::after{left:25px}
+.acc-item{background:rgba(0,0,0,.3);border:1px solid var(--b);border-radius:14px;padding:14px 16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.acc-item .info{text-align:left;flex:1;min-width:0}
+.acc-item .info .name{font-size:14px;font-weight:700;color:#fff;display:flex;align-items:center;gap:6px}
+.acc-item .info .name .role{font-size:9px;padding:2px 8px;border-radius:20px;background:rgba(245,158,11,.1);color:#f59e0b;border:1px solid rgba(245,158,11,.2)}
+.acc-item .info .meta{font-size:11px;color:var(--d);margin-top:4px;display:flex;gap:10px;flex-wrap:wrap}
+.acc-item .info .meta .timer{color:#4ade80}
+.acc-item .info .meta .timer.warn{color:#f59e0b}
+.acc-item .info .meta .timer.danger{color:#ef4444}
+.acc-item .info .meta .permanent{color:#00d4ff}
+.acc-item .actions{display:flex;gap:6px;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -78,25 +77,21 @@ body::after{content:'';position:absolute;bottom:-30%;right:-20%;width:500px;heig
 <div class="sound-btn" id="soundBtn" onclick="toggleSound()">🔇</div>
 
 <!-- ============================================
-     PAGE 1: SPLASH (PAY TO ACCESS)
+     PAGE 1: SPLASH
      ============================================ -->
 <div class="page active" id="pageSplash">
-<div class="logo">
-<img src="https://files.catbox.moe/bhkin5.png" alt="Logo">
-</div>
+<div class="logo"><img src="https://files.catbox.moe/bhkin5.png" alt="Logo"></div>
 <div class="brand">BEACHX</div>
 <div class="bsub">Premium Access</div>
 
 <div class="card">
 <div class="ct" style="text-align:center;font-size:20px">Pay to Access</div>
 <div class="cs" style="text-align:center;margin-bottom:20px">Beli akses dulu buat masuk</div>
-
 <div class="price-box">
 <div class="label">Harga Akses</div>
 <div class="price">Rp 15.000</div>
 <div class="desc">Akses seumur hidup • Full fitur</div>
 </div>
-
 <button class="btn-buy" onclick="buyAccess()">BUY ACCESS →</button>
 <button class="btn-outline" onclick="goLogin()">SUDAH PUNYA AKUN? LOGIN</button>
 </div>
@@ -106,39 +101,32 @@ body::after{content:'';position:absolute;bottom:-30%;right:-20%;width:500px;heig
      PAGE 2: LOGIN
      ============================================ -->
 <div class="page" id="pageLogin">
-<div class="logo">
-<img src="https://files.catbox.moe/bhkin5.png" alt="Logo">
-</div>
+<div class="logo"><img src="https://files.catbox.moe/bhkin5.png" alt="Logo"></div>
 <div class="brand">BEACHX</div>
 <div class="bsub">Silahkan Login</div>
 
 <div class="card">
 <div class="ct">Welcome back</div>
 <div class="cs">Masukkan Akunmu</div>
-
 <div class="ig">
 <span class="ic">👤</span>
 <input type="text" id="username" placeholder="Username" autocomplete="off">
 </div>
-
 <div class="ig">
 <span class="ic">🔒</span>
 <input type="password" id="password" placeholder="Password">
 <span class="tp" onclick="togglePass()">👁</span>
 </div>
-
 <button class="btn" onclick="doLogin()">SIGN IN →</button>
 <button class="btn-outline" onclick="backToSplash()">← Kembali</button>
 </div>
 </div>
 
 <!-- ============================================
-     PAGE 3: DASHBOARD DEV (KHUSUS DevOffc)
+     PAGE 3: DEV PANEL
      ============================================ -->
 <div class="page" id="pageDev">
-<div class="logo">
-<img src="https://files.catbox.moe/bhkin5.png" alt="Logo">
-</div>
+<div class="logo"><img src="https://files.catbox.moe/bhkin5.png" alt="Logo"></div>
 <div class="brand">DEV PANEL</div>
 <div class="bsub">Developer Area</div>
 
@@ -150,19 +138,32 @@ body::after{content:'';position:absolute;bottom:-30%;right:-20%;width:500px;heig
 <span class="ic">👤</span>
 <input type="text" id="newUser" placeholder="Username baru" autocomplete="off">
 </div>
-
 <div class="ig">
 <span class="ic">🔒</span>
 <input type="text" id="newPass" placeholder="Password baru">
+</div>
+
+<div class="toggle-row">
+<div>
+<div class="label">Use Timer</div>
+<div class="sub">Aktifkan kalau mau akun expire otomatis</div>
+</div>
+<div class="toggle" id="timerToggle" onclick="toggleTimer()"></div>
+</div>
+
+<div class="ig" id="timerInputWrap" style="display:none">
+<span class="ic">⏱️</span>
+<input type="number" id="timerDays" placeholder="[ ] Day" min="1" value="1">
 </div>
 
 <button class="btn" onclick="createAccount()">BUAT AKUN →</button>
 <button class="btn-outline" onclick="logoutDev()">← Logout</button>
 </div>
 
-<div class="card" style="margin-top:16px">
+<div class="card">
 <div class="ct" style="font-size:16px">Daftar Akun</div>
-<div id="accountList" style="text-align:left;font-size:12px;color:var(--d);margin-top:12px;max-height:200px;overflow-y:auto"></div>
+<div class="cs">Kelola semua akun</div>
+<div id="accountList"></div>
 </div>
 </div>
 
@@ -174,34 +175,52 @@ body::after{content:'';position:absolute;bottom:-30%;right:-20%;width:500px;heig
 
 <script>
 /* ============================================
-   ACCOUNT SYSTEM (LOCALSTORAGE)
+   ACCOUNT SYSTEM
    ============================================ */
 var ACCOUNTS_KEY = 'beachx_accounts';
 var DEV_USERNAME = 'DevOffc';
 var DEV_PASSWORD = 'DevOffc123';
 
 function getAccounts(){
-try{
-return JSON.parse(localStorage.getItem(ACCOUNTS_KEY)) || {};
-}catch(e){return {}}
+try{return JSON.parse(localStorage.getItem(ACCOUNTS_KEY)) || {};}catch(e){return {}}
 }
-
 function saveAccounts(acc){
 localStorage.setItem(ACCOUNTS_KEY, JSON.stringify(acc));
 }
-
 function initDevAccount(){
 var acc = getAccounts();
 if(!acc[DEV_USERNAME]){
 acc[DEV_USERNAME] = {
 password: DEV_PASSWORD,
 role: 'developer',
-created: new Date().toISOString()
+created: Date.now(),
+permanent: true
 };
 saveAccounts(acc);
 }
 }
 initDevAccount();
+
+/* ============================================
+   AUTO-KILL EXPIRED ACCOUNTS
+   ============================================ */
+function checkExpired(){
+var acc = getAccounts();
+var now = Date.now();
+var changed = false;
+Object.keys(acc).forEach(function(k){
+if(acc[k].role === 'developer') return;
+if(acc[k].permanent) return;
+if(acc[k].expiresAt && now > acc[k].expiresAt){
+delete acc[k];
+changed = true;
+}
+});
+if(changed) saveAccounts(acc);
+return changed;
+}
+checkExpired();
+setInterval(checkExpired, 60000);
 
 /* ============================================
    MUSIC
@@ -218,12 +237,8 @@ bgSound.volume = 0.3;
 bgSound.play().catch(function(e){});
 document.getElementById('soundBtn').textContent = '🔊';
 }
-
 function toggleSound(){
-if(!musicStarted){
-startMusic();
-return;
-}
+if(!musicStarted){startMusic();return;}
 soundOn = !soundOn;
 if(soundOn){
 bgSound.volume = 0.3;
@@ -244,30 +259,19 @@ function showPage(id){
 document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
 document.getElementById(id).classList.add('active');
 }
-
 function goLogin(){
 showPage('pageLogin');
 startMusic();
 showToast('Selamat datang di BeachX!');
 }
-
-function backToSplash(){
-showPage('pageSplash');
-}
-
-function buyAccess(){
-window.location.href = 'https://t.me/Devofficialacc';
-}
-
+function backToSplash(){showPage('pageSplash');}
+function buyAccess(){window.location.href = 'https://t.me/Devofficialacc';}
 function logoutDev(){
 localStorage.removeItem('beachx_logged');
 localStorage.removeItem('beachx_user');
+localStorage.removeItem('beachx_role');
 backToSplash();
 }
-
-/* ============================================
-   TOGGLE PASSWORD
-   ============================================ */
 function togglePass(){
 var p=document.getElementById('password');
 p.type=p.type==='password'?'text':'password';
@@ -279,30 +283,27 @@ p.type=p.type==='password'?'text':'password';
 function doLogin(){
 var u=document.getElementById('username').value.trim();
 var p=document.getElementById('password').value.trim();
-
 if(!u||!p){showToast('Isi username & password!');return}
 
+checkExpired();
 var acc = getAccounts();
 
-if(!acc[u]){
-showToast('❌ Akun tidak ditemukan!');
+if(!acc[u]){showToast('❌ Akun tidak ditemukan!',true);return;}
+if(acc[u].password !== p){showToast('❌ Password salah!',true);return;}
+
+if(!acc[u].permanent && acc[u].expiresAt && Date.now() > acc[u].expiresAt){
+delete acc[u];saveAccounts(acc);
+showToast('❌ Akun sudah expired!',true);
 return;
 }
 
-if(acc[u].password !== p){
-showToast('❌ Password salah!');
-return;
-}
-
-/* Simpan sesi */
 localStorage.setItem('beachx_user',u);
 localStorage.setItem('beachx_role',acc[u].role || 'user');
 localStorage.setItem('beachx_logged','true');
 
-/* Cek role */
 if(acc[u].role === 'developer'){
 showToast('👑 Selamat datang, Developer!');
-setTimeout(function(){showPage('pageDev'); renderAccounts();},800);
+setTimeout(function(){showPage('pageDev');renderAccounts();},800);
 }else{
 showToast('✅ Selamat datang, '+u+'!');
 setTimeout(function(){window.location.href='index.html';},800);
@@ -310,70 +311,136 @@ setTimeout(function(){window.location.href='index.html';},800);
 }
 
 /* ============================================
-   CREATE ACCOUNT (KHUSUS DEV)
+   TIMER TOGGLE
+   ============================================ */
+var timerOn = false;
+function toggleTimer(){
+timerOn = !timerOn;
+document.getElementById('timerToggle').classList.toggle('on', timerOn);
+document.getElementById('timerInputWrap').style.display = timerOn ? 'flex' : 'none';
+}
+function makeTimer(){
+toggleTimer();
+}
+
+/* ============================================
+   CREATE ACCOUNT
    ============================================ */
 function createAccount(){
 var u=document.getElementById('newUser').value.trim();
 var p=document.getElementById('newPass').value.trim();
 
-if(!u||!p){showToast('Isi username & password baru!');return}
-if(u.length < 3){showToast('Username minimal 3 karakter!');return}
-if(p.length < 4){showToast('Password minimal 4 karakter!');return}
+if(!u||!p){showToast('Isi username & password!',true);return}
+if(u.length < 3){showToast('Username minimal 3 karakter!',true);return}
+if(p.length < 4){showToast('Password minimal 4 karakter!',true);return}
 
 var acc = getAccounts();
+if(acc[u]){showToast('❌ Username sudah dipakai!',true);return;}
 
-if(acc[u]){
-showToast('❌ Username sudah dipakai!');
-return;
-}
-
-acc[u] = {
+var newAcc = {
 password: p,
 role: 'user',
-created: new Date().toISOString()
+created: Date.now(),
+permanent: !timerOn
 };
+
+if(timerOn){
+var days = parseInt(document.getElementById('timerDays').value) || 1;
+if(days < 1) days = 1;
+newAcc.expiresAt = Date.now() + (days * 24 * 60 * 60 * 1000);
+newAcc.days = days;
+}
+
+acc[u] = newAcc;
 saveAccounts(acc);
 
 document.getElementById('newUser').value='';
 document.getElementById('newPass').value='';
+document.getElementById('timerDays').value='1';
+if(timerOn){toggleTimer();}
+
 showToast('✅ Akun '+u+' berhasil dibuat!');
 renderAccounts();
 }
 
 /* ============================================
-   RENDER ACCOUNT LIST
+   KILL ACCOUNT
    ============================================ */
-function renderAccounts(){
+function killAccount(username){
+if(!confirm('Yakin mau hapus akun "'+username+'"?'))return;
 var acc = getAccounts();
-var list = document.getElementById('accountList');
-var html = '';
-var keys = Object.keys(acc);
-if(keys.length === 0){
-list.innerHTML = '<div style="color:var(--dd);text-align:center;padding:12px">Belum ada akun</div>';
+if(acc[username] && acc[username].role === 'developer'){
+showToast('❌ Tidak bisa hapus akun developer!',true);
 return;
 }
+delete acc[username];
+saveAccounts(acc);
+showToast('🗑️ Akun '+username+' dihapus!');
+renderAccounts();
+}
+
+/* ============================================
+   RENDER ACCOUNTS
+   ============================================ */
+function renderAccounts(){
+checkExpired();
+var acc = getAccounts();
+var list = document.getElementById('accountList');
+var keys = Object.keys(acc);
+
+if(keys.length === 0){
+list.innerHTML = '<div style="color:var(--dd);text-align:center;padding:20px;font-size:12px">Belum ada akun</div>';
+return;
+}
+
+var html = '';
 keys.forEach(function(k){
-var role = acc[k].role === 'developer' ? ' 👑' : '';
-html += '<div style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,.03);display:flex;justify-content:space-between">'+
-'<span style="color:#fff">'+k+role+'</span>'+
-'<span style="color:var(--dd);font-size:11px">'+acc[k].password+'</span>'+
+var a = acc[k];
+var isDev = a.role === 'developer';
+var roleTag = isDev ? '<span class="role">DEV</span>' : '';
+var timerInfo = '';
+
+if(isDev || a.permanent){
+timerInfo = '<span class="permanent">♾️ Permanent</span>';
+}else if(a.expiresAt){
+var left = a.expiresAt - Date.now();
+var daysLeft = Math.ceil(left / (24*60*60*1000));
+var cls = 'timer';
+if(daysLeft <= 1) cls = 'timer danger';
+else if(daysLeft <= 3) cls = 'timer warn';
+timerInfo = '<span class="'+cls+'">⏱️ '+daysLeft+' hari lagi</span>';
+}
+
+var killBtn = isDev ? '' : '<button class="btn btn-danger btn-small" onclick="killAccount(\''+k+'\')">KILL</button>';
+
+html += '<div class="acc-item">'+
+'<div class="info">'+
+'<div class="name">'+k+roleTag+'</div>'+
+'<div class="meta">'+
+'<span>🔑 '+a.password+'</span>'+
+timerInfo+
+'</div>'+
+'</div>'+
+'<div class="actions">'+killBtn+'</div>'+
 '</div>';
 });
+
 list.innerHTML = html;
 }
 
 /* ============================================
    TOAST
    ============================================ */
-function showToast(m){
+function showToast(m, err){
 var el=document.getElementById('toast');
-el.textContent=m;el.classList.add('show');
+el.textContent=m;
+el.className = 'toast show' + (err?' error':'');
 clearTimeout(el._t);
-el._t=setTimeout(function(){el.classList.remove('show')},2500);
+el._t=setTimeout(function(){el.classList.remove('show')},2800);
 }
 
 /* ============================================
-   CEK SESI (AUTO LOGIN)
+   AUTO LOGIN
    ============================================ */
 var logged = localStorage.getItem('beachx_logged');
 var role = localStorage.getItem('beachx_role');
