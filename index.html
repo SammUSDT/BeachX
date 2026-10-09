@@ -27,8 +27,6 @@
             --text-dim: #555;
             --text-dark: #333;
         }
-
-        /* ===== HEADER ===== */
         .dashboard-header {
             text-align: center;
             margin-bottom: 24px;
@@ -47,8 +45,6 @@
             letter-spacing: 2px;
             margin-top: 4px;
         }
-
-        /* ===== PROMO ===== */
         .promo-card {
             background: linear-gradient(135deg, #0d1a2a, #111118);
             border-radius: 20px;
@@ -77,8 +73,6 @@
             font-size: 12px;
             color: var(--text-dim);
         }
-
-        /* ===== WELCOME ===== */
         .welcome-card {
             background: var(--card);
             border-radius: 24px;
@@ -118,8 +112,6 @@
             letter-spacing: 2px;
             font-weight: 600;
         }
-
-        /* ===== STATS ===== */
         .stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -144,8 +136,6 @@
             margin-top: 4px;
             letter-spacing: 1px;
         }
-
-        /* ===== SECTION ===== */
         .section-title {
             font-size: 16px;
             font-weight: 700;
@@ -162,8 +152,6 @@
             padding: 4px 12px;
             border-radius: 30px;
         }
-
-        /* ===== THEME PICKER ===== */
         .theme-picker {
             display: flex;
             gap: 10px;
@@ -182,8 +170,6 @@
             border-color: #fff;
             transform: scale(1.1);
         }
-
-        /* ===== MENU ===== */
         .menu-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -227,8 +213,6 @@
             margin-top: 8px;
             letter-spacing: 1px;
         }
-
-        /* ===== BOTTOM NAV ===== */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -259,8 +243,6 @@
             font-size: 20px;
             margin-bottom: 2px;
         }
-
-        /* ===== MODAL ===== */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -320,8 +302,6 @@
             color: var(--text-dim);
             margin-top: 8px;
         }
-
-        /* ===== TOAST ===== */
         .toast {
             position: fixed;
             bottom: 100px;
@@ -349,20 +329,17 @@
 </head>
 <body>
 
-    <!-- HEADER -->
     <div class="dashboard-header">
         <h1>beachx</h1>
         <p>Design By OTA and Enjoy For Use This Apps</p>
     </div>
 
-    <!-- PROMO -->
     <div class="promo-card" onclick="openModal('promo')">
         <div class="badge">PROMO</div>
         <h3>Pterodactyl Panel</h3>
         <p>Beli server bot pribadi kamu sekarang</p>
     </div>
 
-    <!-- WELCOME -->
     <div class="welcome-card">
         <div class="avatar">👤</div>
         <div class="greeting">Ahlan Wa Sahlan!!</div>
@@ -370,7 +347,6 @@
         <div class="role">FULLUP</div>
     </div>
 
-    <!-- STATS -->
     <div class="stats-grid">
         <div class="stat-item">
             <div class="number">0</div>
@@ -386,7 +362,6 @@
         </div>
     </div>
 
-    <!-- THEME PICKER -->
     <div class="section-title">
         🎨 Pilih Tema
         <span class="count" id="themeName">Blue</span>
@@ -400,7 +375,6 @@
         <div class="theme-dot" style="background: #ec4899;" onclick="setTheme('pink', this)"></div>
     </div>
 
-    <!-- MENU -->
     <div class="section-title">
         🐛 Bug Menu
         <span class="count">11 Modules</span>
@@ -432,7 +406,6 @@
         </div>
     </div>
 
-    <!-- BOTTOM NAV -->
     <div class="bottom-nav">
         <div class="nav-item active">
             <div class="nav-icon">🏠</div>
@@ -452,7 +425,6 @@
         </div>
     </div>
 
-    <!-- MODAL -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal">
             <h3 id="modalTitle">Title</h3>
@@ -462,25 +434,18 @@
         </div>
     </div>
 
-    <!-- TOAST -->
     <div class="toast" id="toast"></div>
 
     <script>
-        // ============================================
-        // CEK LOGIN
-        // ============================================
         const logged = localStorage.getItem('beachx_logged');
         const user = localStorage.getItem('beachx_user');
 
         if (!logged || logged !== 'true') {
-            window.location.href = 'account.html';
+            window.location.href = 'settings/account.html';
         } else {
             document.getElementById('displayName').textContent = user || 'User';
         }
 
-        // ============================================
-        // THEME CONFIG
-        // ============================================
         const themes = {
             blue: { primary: '#00d4ff', bg: '#0a0a12', card: '#111118' },
             red: { primary: '#ef4444', bg: '#120a0a', card: '#181111' },
@@ -504,16 +469,13 @@
             showToast('Tema: ' + name);
         }
 
-        // ============================================
-        // MODAL
-        // ============================================
         const modalData = {
             promo: {
                 title: '🛒 Pterodactyl Panel',
                 desc: 'Beli server bot pribadi kamu sekarang! Harga mulai dari Rp 10.000/bulan. Hubungi admin untuk info lebih lanjut.'
             },
             manta: {
-                title: '🐀 Manta Bug',
+                title: '🐀 BeachX Bug',
                 desc: 'Bug tanpa custom. Gunakan langsung tanpa custom delay dan loops.'
             },
             custom: {
@@ -542,19 +504,13 @@
             document.getElementById('modalOverlay').classList.remove('show');
         }
 
-        // ============================================
-        // LOGOUT
-        // ============================================
         function logout() {
             if (!confirm('Yakin mau logout?')) return;
             localStorage.removeItem('beachx_logged');
             localStorage.removeItem('beachx_user');
-            window.location.href = 'account.html';
+            window.location.href = 'settings/account.html';
         }
 
-        // ============================================
-        // TOAST
-        // ============================================
         function showToast(msg) {
             const el = document.getElementById('toast');
             el.textContent = msg;
@@ -563,15 +519,11 @@
             el._timer = setTimeout(() => el.classList.remove('show'), 2500);
         }
 
-        // ============================================
-        // INIT
-        // ============================================
         const expiry = new Date();
         expiry.setFullYear(expiry.getFullYear() + 3);
         document.getElementById('expiryDate').textContent =
             (expiry.getMonth() + 1) + '/' + expiry.getDate() + '/' + expiry.getFullYear();
 
-        // Load theme
         const savedTheme = localStorage.getItem('beachx_theme') || 'blue';
         const t = themes[savedTheme];
         if (t) {
