@@ -218,9 +218,6 @@
     <div class="toast" id="toast"></div>
 
     <script>
-        // ============================================
-        // THEME CONFIG
-        // ============================================
         const themes = {
             blue: { primary: '#00d4ff', bg: '#0a0a12', card: '#111118' },
             red: { primary: '#ef4444', bg: '#120a0a', card: '#181111' },
@@ -237,22 +234,15 @@
             document.querySelectorAll('.theme-dot').forEach(d => d.classList.remove('active'));
             if (el) el.classList.add('active');
 
-            // Simpan tema ke localStorage
             localStorage.setItem('beachx_theme', name);
             showToast('Tema: ' + name);
         }
 
-        // ============================================
-        // TOGGLE PASSWORD
-        // ============================================
         function togglePass() {
             const pass = document.getElementById('password');
             pass.type = pass.type === 'password' ? 'text' : 'password';
         }
 
-        // ============================================
-        // LOGIN
-        // ============================================
         function doLogin() {
             const user = document.getElementById('username').value.trim();
             const pass = document.getElementById('password').value.trim();
@@ -262,21 +252,16 @@
                 return;
             }
 
-            // Simpan username & status login
             localStorage.setItem('beachx_user', user);
             localStorage.setItem('beachx_logged', 'true');
 
             showToast('Selamat datang, ' + user + '!');
 
-            // Redirect ke dashboard
             setTimeout(() => {
-                window.location.href = 'index.html';
+                window.location.href = '../index.html';
             }, 800);
         }
 
-        // ============================================
-        // TOAST
-        // ============================================
         function showToast(msg) {
             const el = document.getElementById('toast');
             el.textContent = msg;
@@ -285,9 +270,6 @@
             el._timer = setTimeout(() => el.classList.remove('show'), 2500);
         }
 
-        // ============================================
-        // INIT — LOAD THEME
-        // ============================================
         const savedTheme = localStorage.getItem('beachx_theme') || 'blue';
         const t = themes[savedTheme];
         if (t) {
