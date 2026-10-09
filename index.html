@@ -3,113 +3,144 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>BEACHX</title>
+<title>BEACHX — Dashboard</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;-webkit-tap-highlight-color:transparent}
-body{background:#0a0a12;color:#fff;min-height:100vh;padding:16px;transition:background .4s}
-:root{--p:#00d4ff;--c:#111118;--b:#1a1a2a;--d:#555;--dd:#333}
-.h{text-align:center;margin-bottom:24px}
-.h h1{font-size:40px;font-weight:800;letter-spacing:2px;background:linear-gradient(135deg,#fff,#aaa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.h p{font-size:11px;color:var(--dd);letter-spacing:2px;margin-top:4px}
-.promo{background:linear-gradient(135deg,#0d1a2a,#111118);border-radius:20px;padding:20px;margin-bottom:16px;border:1px solid var(--b);cursor:pointer}
-.promo .badge{font-size:10px;color:var(--p);letter-spacing:2px;margin-bottom:6px}
-.promo h3{font-size:18px;font-weight:700;margin-bottom:4px}
-.promo p{font-size:12px;color:var(--d)}
-.welcome{background:var(--c);border-radius:24px;padding:28px 20px;text-align:center;margin-bottom:16px;border:1px solid var(--b)}
-.welcome .avatar{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#00d4ff,#0088cc);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 12px}
-.welcome .greet{font-size:12px;color:var(--d);margin-bottom:4px}
-.welcome .name{font-size:28px;font-weight:800;margin-bottom:12px}
-.welcome .role{display:inline-block;padding:4px 20px;border-radius:30px;background:rgba(0,212,255,.08);color:var(--p);font-size:11px;letter-spacing:2px;font-weight:600}
-.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px}
-.stat{background:var(--c);border-radius:16px;padding:16px 8px;text-align:center;border:1px solid var(--b)}
-.stat .num{font-size:20px;font-weight:800}
-.stat .lbl{font-size:9px;color:var(--dd);margin-top:4px;letter-spacing:1px}
-.st{font-size:16px;font-weight:700;margin-bottom:12px;margin-top:8px;display:flex;justify-content:space-between;align-items:center}
-.st .count{font-size:11px;color:var(--p);background:rgba(0,212,255,.05);padding:4px 12px;border-radius:30px}
-.themes{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
-.tdot{width:40px;height:40px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:.3s}
-.tdot:hover,.tdot.active{border-color:#fff;transform:scale(1.1)}
-.menu{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:80px}
-.mi{background:var(--c);border-radius:18px;padding:20px 16px;border:1px solid var(--b);cursor:pointer}
-.mi .icon{font-size:28px;margin-bottom:10px}
-.mi .title{font-size:15px;font-weight:700;margin-bottom:4px}
-.mi .desc{font-size:11px;color:var(--d);line-height:1.5}
-.mi .badge{display:inline-block;font-size:9px;color:var(--p);background:rgba(0,212,255,.05);padding:2px 10px;border-radius:30px;margin-top:8px;letter-spacing:1px}
-.nav{position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,18,.95);backdrop-filter:blur(20px);border-top:1px solid var(--b);display:flex;justify-content:space-around;padding:12px 0 20px;z-index:100}
-.ni{display:flex;flex-direction:column;align-items:center;font-size:10px;color:var(--dd);cursor:pointer;letter-spacing:1px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+body{background:#05060a;color:#fff;min-height:100vh;padding:20px;overflow-x:hidden;position:relative}
+body::before{content:'';position:fixed;top:-20%;left:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(0,212,255,.06),transparent 70%);border-radius:50%;pointer-events:none}
+:root{--p:#00d4ff;--c:rgba(17,17,24,.7);--b:rgba(255,255,255,.06);--d:#666;--dd:#333}
+.h{text-align:center;margin-bottom:28px;position:relative;z-index:1}
+.h h1{font-size:44px;font-weight:900;letter-spacing:3px;background:linear-gradient(135deg,#00d4ff,#a855f7,#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 200%;animation:gradient 4s ease infinite}
+@keyframes gradient{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.h p{font-size:10px;color:var(--dd);letter-spacing:4px;margin-top:6px;text-transform:uppercase}
+
+.welcome{background:var(--c);backdrop-filter:blur(30px);border-radius:28px;padding:32px 24px;text-align:center;margin-bottom:18px;border:1px solid var(--b);position:relative;overflow:hidden}
+
+.banner-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.25;z-index:0;pointer-events:none}
+
+.welcome-content{position:relative;z-index:1}
+
+.welcome .avatar{width:80px;height:80px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 0 40px rgba(0,212,255,.3);border:3px solid rgba(0,212,255,.3)}
+
+.welcome .avatar img{width:100%;height:100%;object-fit:cover}
+
+.welcome .greet{font-size:12px;color:var(--d);margin-bottom:6px}
+.welcome .name{font-size:32px;font-weight:900;margin-bottom:14px;background:linear-gradient(135deg,#fff,#aaa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.welcome .role{display:inline-block;padding:6px 24px;border-radius:30px;background:rgba(0,212,255,.08);color:var(--p);font-size:11px;letter-spacing:3px;font-weight:700;border:1px solid rgba(0,212,255,.1)}
+
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:18px}
+.stat{background:var(--c);backdrop-filter:blur(20px);border-radius:20px;padding:18px 10px;text-align:center;border:1px solid var(--b);transition:.3s}
+.stat:hover{border-color:rgba(0,212,255,.15);transform:translateY(-2px)}
+.stat .num{font-size:22px;font-weight:800;background:linear-gradient(135deg,#fff,#aaa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat .lbl{font-size:9px;color:var(--dd);margin-top:6px;letter-spacing:1px;text-transform:uppercase}
+
+.st{font-size:16px;font-weight:700;margin-bottom:14px;margin-top:10px;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}
+.st .count{font-size:10px;color:var(--p);background:rgba(0,212,255,.05);padding:4px 14px;border-radius:30px;border:1px solid rgba(0,212,255,.1);letter-spacing:1px}
+
+.themes{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap}
+.tdot{width:44px;height:44px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:.3s;position:relative}
+.tdot:hover,.tdot.active{border-color:#fff;transform:scale(1.15);box-shadow:0 0 25px currentColor}
+
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:100px}
+.mi{background:var(--c);backdrop-filter:blur(20px);border-radius:22px;padding:24px 18px;border:1px solid var(--b);cursor:pointer;transition:.3s;position:relative;overflow:hidden}
+.mi:hover{border-color:rgba(0,212,255,.2);transform:translateY(-4px);box-shadow:0 15px 40px rgba(0,0,0,.3)}
+.mi .icon{font-size:32px;margin-bottom:12px}
+.mi .title{font-size:16px;font-weight:700;margin-bottom:6px}
+.mi .desc{font-size:11px;color:var(--d);line-height:1.6}
+.mi .badge{display:inline-block;font-size:9px;color:var(--p);background:rgba(0,212,255,.05);padding:3px 12px;border-radius:30px;margin-top:10px;letter-spacing:1px;border:1px solid rgba(0,212,255,.1);font-weight:600}
+
+.nav{position:fixed;bottom:0;left:0;right:0;background:rgba(5,6,10,.9);backdrop-filter:blur(30px);border-top:1px solid var(--b);display:flex;justify-content:space-around;padding:14px 0 24px;z-index:100}
+.ni{display:flex;flex-direction:column;align-items:center;font-size:10px;color:var(--dd);cursor:pointer;letter-spacing:1px;transition:.3s;gap:4px}
 .ni.active{color:var(--p)}
-.ni .icon{font-size:20px;margin-bottom:2px}
-.modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:200;padding:24px}
+.ni:hover{color:var(--p);transform:translateY(-2px)}
+.ni .icon{font-size:22px}
+
+.modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;z-index:200;padding:24px}
 .modal.show{display:flex}
-.modal-box{background:var(--c);border-radius:24px;padding:24px;width:100%;max-width:360px;border:1px solid var(--b)}
-.modal-box h3{font-size:18px;font-weight:700;margin-bottom:8px}
-.modal-box p{font-size:13px;color:var(--d);margin-bottom:16px;line-height:1.6}
-.modal-box button{width:100%;padding:14px;border-radius:12px;border:none;background:var(--p);color:#000;font-weight:700;font-size:14px;cursor:pointer}
-.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:rgba(0,212,255,.9);color:#000;padding:12px 24px;border-radius:60px;font-size:13px;font-weight:600;display:none;z-index:300}
-.toast.show{display:block}
+.modal-box{background:var(--c);backdrop-filter:blur(30px);border-radius:28px;padding:28px;width:100%;max-width:360px;border:1px solid var(--b);animation:modalIn .3s ease;box-shadow:0 30px 80px rgba(0,0,0,.8);max-height:80vh;overflow-y:auto}
+@keyframes modalIn{from{opacity:0;transform:scale(.95) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-box h3{font-size:20px;font-weight:700;margin-bottom:10px}
+.modal-box p{font-size:13px;color:var(--d);margin-bottom:20px;line-height:1.7}
+.modal-box button{width:100%;padding:16px;border-radius:14px;border:none;background:linear-gradient(135deg,#00d4ff,#0088cc);color:#000;font-weight:700;font-size:14px;cursor:pointer;letter-spacing:1px;transition:.3s;margin-top:10px}
+.modal-box button:hover{transform:translateY(-2px)}
+
+.menu-list{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.menu-list .item{background:rgba(0,0,0,.3);border:1px solid var(--b);border-radius:14px;padding:14px 16px;cursor:pointer;transition:.3s;display:flex;justify-content:space-between;align-items:center}
+.menu-list .item:hover{border-color:rgba(0,212,255,.2);background:rgba(0,212,255,.03)}
+.menu-list .item .left{display:flex;align-items:center;gap:12px}
+.menu-list .item .left .ic{font-size:20px}
+.menu-list .item .left .info .t{font-size:14px;font-weight:600}
+.menu-list .item .left .info .s{font-size:11px;color:var(--d);margin-top:2px}
+.menu-list .item .arrow{color:var(--d);font-size:16px}
+
+.toast{position:fixed;bottom:110px;left:50%;transform:translateX(-50%);background:rgba(0,212,255,.95);color:#000;padding:14px 28px;border-radius:60px;font-size:13px;font-weight:600;display:none;z-index:300;box-shadow:0 10px 40px rgba(0,212,255,.3)}
+.toast.show{display:block;animation:toastIn .3s ease}
+@keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 </style>
 </head>
 <body>
 
 <div class="h">
 <h1>beachx</h1>
-<p>Design By OTA and Enjoy For Use This Apps</p>
-</div>
-
-<div class="promo" onclick="openModal('promo')">
-<div class="badge">PROMO</div>
-<h3>Pterodactyl Panel</h3>
-<p>Beli server bot pribadi kamu sekarang</p>
+<p>Design By BeachX team and Enjoy For Use This Apps</p>
 </div>
 
 <div class="welcome">
-<div class="avatar">👤</div>
+<video class="banner-video" autoplay muted loop playsinline>
+<source src="https://files.catbox.moe/p84ov5.mp4" type="video/mp4">
+</video>
+
+<div class="welcome-content">
+<div class="avatar">
+<img src="https://files.catbox.moe/zh0h71.jpg" alt="Profile">
+</div>
 <div class="greet">Ahlan Wa Sahlan!!</div>
 <div class="name" id="displayName">User</div>
 <div class="role">FULLUP</div>
 </div>
+</div>
 
 <div class="stats">
-<div class="stat"><div class="num">0</div><div class="lbl">Online Users</div></div>
+<div class="stat"><div class="num">0</div><div class="lbl">Online</div></div>
 <div class="stat"><div class="num">0</div><div class="lbl">Connections</div></div>
 <div class="stat"><div class="num" id="expiryDate">9/7/2029</div><div class="lbl">Expiration</div></div>
 </div>
 
 <div class="st">🎨 Pilih Tema <span class="count" id="themeName">Blue</span></div>
 <div class="themes">
-<div class="tdot active" style="background:#00d4ff" onclick="setTheme('blue',this)"></div>
-<div class="tdot" style="background:#ef4444" onclick="setTheme('red',this)"></div>
-<div class="tdot" style="background:#4ade80" onclick="setTheme('green',this)"></div>
-<div class="tdot" style="background:#a855f7" onclick="setTheme('purple',this)"></div>
-<div class="tdot" style="background:#f59e0b" onclick="setTheme('orange',this)"></div>
-<div class="tdot" style="background:#ec4899" onclick="setTheme('pink',this)"></div>
+<div class="tdot active" style="background:#00d4ff;color:#00d4ff" onclick="setTheme('blue',this)"></div>
+<div class="tdot" style="background:#ef4444;color:#ef4444" onclick="setTheme('red',this)"></div>
+<div class="tdot" style="background:#4ade80;color:#4ade80" onclick="setTheme('green',this)"></div>
+<div class="tdot" style="background:#a855f7;color:#a855f7" onclick="setTheme('purple',this)"></div>
+<div class="tdot" style="background:#f59e0b;color:#f59e0b" onclick="setTheme('orange',this)"></div>
+<div class="tdot" style="background:#ec4899;color:#ec4899" onclick="setTheme('pink',this)"></div>
 </div>
 
-<div class="st">🐛 Bug Menu <span class="count">11 Modules</span></div>
+<div class="st">🐛 Bug Menu <span class="count">6 Modules</span></div>
 <div class="menu">
-<div class="mi" onclick="openModal('BeachX')">
-<div class="icon">🐀</div>
-<div class="title">BeachX Bug</div>
-<div class="desc">Bug tanpa custom</div>
-<span class="badge">RECOMMENDED</span>
+<div class="mi" onclick="openModal('bugwa')">
+<div class="icon">💬</div>
+<div class="title">Bug WA</div>
+<div class="desc">Bug WhatsApp</div>
+<span class="badge">WA</span>
+</div>
+<div class="mi" onclick="openModal('bugtele')">
+<div class="icon">✈️</div>
+<div class="title">Bug Telegram</div>
+<div class="desc">Bug Telegram</div>
+<span class="badge">TELE</span>
 </div>
 <div class="mi" onclick="openModal('custom')">
 <div class="icon">⚙️</div>
 <div class="title">Custom Bug</div>
-<div class="desc">Menu custom bug</div>
+<div class="desc">Semua menu bug</div>
 <span class="badge">CUSTOM</span>
 </div>
 <div class="mi" onclick="openModal('tools')">
 <div class="icon">🛠️</div>
 <div class="title">Tools</div>
-<div class="desc">Berbagai tools</div>
+<div class="desc">Info device & lainnya</div>
 <span class="badge">TOOLS</span>
-</div>
-<div class="mi" onclick="openModal('info')">
-<div class="icon">ℹ️</div>
-<div class="title">Info</div>
-<div class="desc">Informasi aplikasi</div>
-<span class="badge">INFO</span>
 </div>
 </div>
 
@@ -123,8 +154,8 @@ body{background:#0a0a12;color:#fff;min-height:100vh;padding:16px;transition:back
 <div class="modal" id="modalOverlay">
 <div class="modal-box">
 <h3 id="modalTitle">Title</h3>
-<p id="modalDesc">Description</p>
-<button onclick="closeModal()">OK</button>
+<div id="modalContent"></div>
+<button onclick="closeModal()">Tutup</button>
 </div>
 </div>
 
@@ -137,12 +168,12 @@ window.location.href='account.html';
 document.getElementById('displayName').textContent=localStorage.getItem('beachx_user')||'User';
 
 var themes={
-blue:{p:'#00d4ff',bg:'#0a0a12',c:'#111118'},
-red:{p:'#ef4444',bg:'#120a0a',c:'#181111'},
-green:{p:'#4ade80',bg:'#0a120a',c:'#111811'},
-purple:{p:'#a855f7',bg:'#0f0a12',c:'#151118'},
-orange:{p:'#f59e0b',bg:'#120f0a',c:'#181511'},
-pink:{p:'#ec4899',bg:'#120a0f',c:'#181115'}
+blue:{p:'#00d4ff',bg:'#05060a',c:'rgba(17,17,24,.7)'},
+red:{p:'#ef4444',bg:'#0a0505',c:'rgba(24,17,17,.7)'},
+green:{p:'#4ade80',bg:'#050a05',c:'rgba(17,24,17,.7)'},
+purple:{p:'#a855f7',bg:'#0a050f',c:'rgba(21,17,24,.7)'},
+orange:{p:'#f59e0b',bg:'#0a0805',c:'rgba(24,21,17,.7)'},
+pink:{p:'#ec4899',bg:'#0a050a',c:'rgba(24,17,21,.7)'}
 };
 
 function setTheme(n,el){
@@ -158,18 +189,45 @@ showToast('Tema: '+n);
 }
 
 var modals={
-promo:{t:'💎 Murbug',d:'Beli murbug buat bug mantan kamu sekarang! Harga mulai Rp 5.000/bulan.'},
-BeachX:{t:'🐀 BeachX Bug',d:'Bug tanpa custom. Gunakan langsung tanpa delay dan loops.'},
-custom:{t:'⚙️ Custom Bug',d:'Menu custom bug. Buat menu bug, delay pengiriman dan loops.'},
-tools:{t:'🛠️ Tools',d:'Berbagai tools: Theme Switcher, Sound Manager, dll.'},
-info:{t:'ℹ️ Info',d:'BEACHX v1.0 — Aplikasi bug menu untuk gaya-gayaan. Enjoy!'}
+bugwa:{
+title:'💬 Bug WA',
+content:'<div class="menu-list">'+
+'<div class="item" onclick="showToast(\'Bug WA 1 dijalankan\')"><div class="left"><span class="ic">💥</span><div class="info"><div class="t">Crash WA</div><div class="s">Bikin WA target crash</div></div></div><span class="arrow">›</span></div>'+
+'<div class="item" onclick="showToast(\'Bug WA 2 dijalankan\')"><div class="left"><span class="ic">📵</span><div class="info"><div class="t">Freeze WA</div><div class="s">Bikin WA target freeze</div></div></div><span class="arrow">›</span></div>'+
+'<div class="item" onclick="showToast(\'Bug WA 3 dijalankan\')"><div class="left"><span class="ic">🔒</span><div class="info"><div class="t">Lock WA</div><div class="s">Kunci WA target</div></div></div><span class="arrow">›</span></div>'+
+'</div>'
+},
+bugtele:{
+title:'✈️ Bug Telegram',
+content:'<div class="menu-list">'+
+'<div class="item" onclick="showToast(\'Bug Telegram 1 dijalankan\')"><div class="left"><span class="ic">💥</span><div class="info"><div class="t">Crash Telegram</div><div class="s">Bikin Telegram target crash</div></div></div><span class="arrow">›</span></div>'+
+'<div class="item" onclick="showToast(\'Bug Telegram 2 dijalankan\')"><div class="left"><span class="ic">📵</span><div class="info"><div class="t">Freeze Telegram</div><div class="s">Bikin Telegram target freeze</div></div></div><span class="arrow">›</span></div>'+
+'</div>'
+},
+custom:{
+title:'⚙️ Custom Bug',
+content:'<div class="menu-list">'+
+'<div class="item" onclick="showToast(\'Custom Bug 1\')"><div class="left"><span class="ic">⚙️</span><div class="info"><div class="t">Atur Delay</div><div class="s">Setting delay pengiriman</div></div></div><span class="arrow">›</span></div>'+
+'<div class="item" onclick="showToast(\'Custom Bug 2\')"><div class="left"><span class="ic">🔁</span><div class="info"><div class="t">Atur Loops</div><div class="s">Setting jumlah loop</div></div></div><span class="arrow">›</span></div>'+
+'<div class="item" onclick="showToast(\'Custom Bug 3\')"><div class="left"><span class="ic">📝</span><div class="info"><div class="t">Custom Pesan</div><div class="s">Atur isi pesan</div></div></div><span class="arrow">›</span></div>'+
+'</div>'
+},
+tools:{
+title:'🛠️ Tools',
+content:'<div class="menu-list">'+
+'<div class="item" onclick="showDeviceInfo()"><div class="left"><span class="ic">📱</span><div class="info"><div class="t">About Phone</div><div class="s">Info perangkat kamu</div></div></div><span class="arrow">›</span></div>'+
+'<div class="item" onclick="showBatteryInfo()"><div class="left"><span class="ic">🔋</span><div class="info"><div class="t">Battery Info</div><div class="s">Status baterai</div></div></div><span class="arrow">›</span></div>'+
+'<div class="item" onclick="showNetworkInfo()"><div class="left"><span class="ic">🌐</span><div class="info"><div class="t">Network Info</div><div class="s">Info koneksi</div></div></div><span class="arrow">›</span></div>'+
+'<div class="item" onclick="showScreenInfo()"><div class="left"><span class="ic">📐</span><div class="info"><div class="t">Screen Info</div><div class="s">Resolusi layar</div></div></div><span class="arrow">›</span></div>'+
+'</div>'
+}
 };
 
 function openModal(k){
 var m=modals[k];
 if(!m)return;
-document.getElementById('modalTitle').textContent=m.t;
-document.getElementById('modalDesc').textContent=m.d;
+document.getElementById('modalTitle').textContent=m.title;
+document.getElementById('modalContent').innerHTML=m.content;
 document.getElementById('modalOverlay').classList.add('show');
 }
 function closeModal(){document.getElementById('modalOverlay').classList.remove('show')}
@@ -184,6 +242,52 @@ var el=document.getElementById('toast');
 el.textContent=m;el.classList.add('show');
 clearTimeout(el._t);
 el._t=setTimeout(function(){el.classList.remove('show')},2500);
+}
+
+function showDeviceInfo(){
+var ua=navigator.userAgent;
+var platform=navigator.platform;
+var ram=navigator.deviceMemory?navigator.deviceMemory+' GB':'Unknown';
+var info='<p><b>Device Info</b><br>'+
+'Platform: '+platform+'<br>'+
+'RAM: '+ram+'<br>'+
+'User Agent: '+ua+'</p>';
+document.getElementById('modalContent').innerHTML=info+'<button onclick="openModal(\'tools\')">Kembali</button>';
+}
+
+function showBatteryInfo(){
+if(navigator.getBattery){
+navigator.getBattery().then(function(b){
+var level=Math.round(b.level*100);
+var charging=b.charging?'⚡ Charging':'🔋 Not charging';
+var info='<p><b>Battery Info</b><br>'+
+'Level: '+level+'%<br>'+
+'Status: '+charging+'</p>';
+document.getElementById('modalContent').innerHTML=info+'<button onclick="openModal(\'tools\')">Kembali</button>';
+});
+}else{
+document.getElementById('modalContent').innerHTML='<p>Battery API tidak didukung.</p><button onclick="openModal(\'tools\')">Kembali</button>';
+}
+}
+
+function showNetworkInfo(){
+var conn=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
+var type=conn?conn.effectiveType:'Unknown';
+var down=conn?conn.downlink:'Unknown';
+var info='<p><b>Network Info</b><br>'+
+'Type: '+type+'<br>'+
+'Downlink: '+down+' Mbps</p>';
+document.getElementById('modalContent').innerHTML=info+'<button onclick="openModal(\'tools\')">Kembali</button>';
+}
+
+function showScreenInfo(){
+var w=window.screen.width;
+var h=window.screen.height;
+var dpr=window.devicePixelRatio;
+var info='<p><b>Screen Info</b><br>'+
+'Resolusi: '+w+'x'+h+'<br>'+
+'Pixel Ratio: '+dpr+'</p>';
+document.getElementById('modalContent').innerHTML=info+'<button onclick="openModal(\'tools\')">Kembali</button>';
 }
 
 var e=new Date();
