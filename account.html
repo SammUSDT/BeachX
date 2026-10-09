@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>BEACHX — Login</title>
+<title>BEACHX</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
 body{background:#05060a;color:#fff;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:24px;overflow:hidden;position:relative}
@@ -15,7 +15,9 @@ body::after{content:'';position:absolute;bottom:-30%;right:-20%;width:500px;heig
 
 :root{--p:#00d4ff;--c:rgba(17,17,24,.7);--b:rgba(255,255,255,.06);--d:#666;--dd:#333}
 
-.lc{display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;max-width:400px;text-align:center;position:relative;z-index:1}
+.page{display:none;flex-direction:column;justify-content:center;align-items:center;width:100%;max-width:400px;text-align:center;position:relative;z-index:1;animation:fadeIn .5s ease}
+.page.active{display:flex}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
 .logo{width:110px;height:110px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-bottom:24px;border:2px solid rgba(0,212,255,.2);box-shadow:0 0 60px rgba(0,212,255,.15),inset 0 0 30px rgba(0,212,255,.05);animation:pulse 3s ease-in-out infinite;background:linear-gradient(135deg,rgba(0,212,255,.1),rgba(168,85,247,.1))}
 .logo img{width:100%;height:100%;object-fit:cover}
@@ -46,20 +48,25 @@ body::after{content:'';position:absolute;bottom:-30%;right:-20%;width:500px;heig
 .btn:hover{transform:translateY(-2px);box-shadow:0 15px 40px rgba(0,212,255,.3)}
 .btn:active{transform:translateY(0) scale(.98)}
 
-.tm{display:flex;gap:10px;justify-content:center;margin-top:24px}
-.td{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:.3s;position:relative}
-.td:hover,.td.active{border-color:#fff;transform:scale(1.15);box-shadow:0 0 20px currentColor}
+.btn-outline{width:100%;padding:18px;border-radius:16px;border:1px solid var(--p);background:transparent;color:var(--p);font-size:15px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:.3s;margin-top:12px}
+.btn-outline:hover{background:rgba(0,212,255,.08);transform:translateY(-2px)}
+.btn-outline:active{transform:translateY(0) scale(.98)}
+
+.btn-buy{width:100%;padding:18px;border-radius:16px;border:none;background:linear-gradient(135deg,#f59e0b,#d97706);color:#000;font-size:15px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:.3s;margin-top:12px;box-shadow:0 10px 30px rgba(245,158,11,.2)}
+.btn-buy:hover{transform:translateY(-2px);box-shadow:0 15px 40px rgba(245,158,11,.3)}
+.btn-buy:active{transform:translateY(0) scale(.98)}
 
 .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:rgba(0,212,255,.95);color:#000;padding:14px 28px;border-radius:60px;font-size:13px;font-weight:600;display:none;z-index:300;box-shadow:0 10px 40px rgba(0,212,255,.3)}
 .toast.show{display:block;animation:toastIn .3s ease}
 @keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 
-.demo{font-size:11px;color:var(--dd);margin-top:20px;line-height:1.8}
-.demo span{color:var(--p);cursor:pointer}
-.demo span:hover{text-decoration:underline}
-
 .sound-btn{position:fixed;top:20px;right:20px;width:44px;height:44px;border-radius:50%;background:rgba(17,17,24,.7);backdrop-filter:blur(20px);border:1px solid var(--b);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:100;transition:.3s;font-size:18px}
 .sound-btn:hover{border-color:var(--p);transform:scale(1.1)}
+
+.price-box{background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.15);border-radius:16px;padding:16px;margin-bottom:20px;text-align:left}
+.price-box .label{font-size:10px;color:#f59e0b;letter-spacing:2px;margin-bottom:4px;text-transform:uppercase}
+.price-box .price{font-size:24px;font-weight:800;color:#fff}
+.price-box .desc{font-size:11px;color:var(--d);margin-top:4px}
 </style>
 </head>
 <body>
@@ -70,7 +77,35 @@ body::after{content:'';position:absolute;bottom:-30%;right:-20%;width:500px;heig
 
 <div class="sound-btn" id="soundBtn" onclick="toggleSound()">🔇</div>
 
-<div class="lc">
+<!-- ============================================
+     PAGE 1: SPLASH (PAY TO ACCESS)
+     ============================================ -->
+<div class="page active" id="pageSplash">
+<div class="logo">
+<img src="https://files.catbox.moe/bhkin5.png" alt="Logo">
+</div>
+<div class="brand">BEACHX</div>
+<div class="bsub">Premium Access</div>
+
+<div class="card">
+<div class="ct" style="text-align:center;font-size:20px">Pay to Access</div>
+<div class="cs" style="text-align:center;margin-bottom:20px">Beli akses dulu buat masuk</div>
+
+<div class="price-box">
+<div class="label">Harga Akses</div>
+<div class="price">Rp 15.000</div>
+<div class="desc">Akses seumur hidup • Full fitur</div>
+</div>
+
+<button class="btn-buy" onclick="buyAccess()">BUY ACCESS →</button>
+<button class="btn-outline" onclick="goLogin()">SUDAH PUNYA AKUN? LOGIN</button>
+</div>
+</div>
+
+<!-- ============================================
+     PAGE 2: LOGIN
+     ============================================ -->
+<div class="page" id="pageLogin">
 <div class="logo">
 <img src="https://files.catbox.moe/bhkin5.png" alt="Logo">
 </div>
@@ -93,17 +128,41 @@ body::after{content:'';position:absolute;bottom:-30%;right:-20%;width:500px;heig
 </div>
 
 <button class="btn" onclick="doLogin()">SIGN IN →</button>
+<button class="btn-outline" onclick="backToSplash()">← Kembali</button>
+</div>
 </div>
 
-<div class="tm">
-<div class="td active" style="background:#00d4ff;color:#00d4ff" onclick="setTheme('blue',this)"></div>
-<div class="td" style="background:#ef4444;color:#ef4444" onclick="setTheme('red',this)"></div>
-<div class="td" style="background:#4ade80;color:#4ade80" onclick="setTheme('green',this)"></div>
-<div class="td" style="background:#a855f7;color:#a855f7" onclick="setTheme('purple',this)"></div>
+<!-- ============================================
+     PAGE 3: DASHBOARD DEV (KHUSUS DevOffc)
+     ============================================ -->
+<div class="page" id="pageDev">
+<div class="logo">
+<img src="https://files.catbox.moe/bhkin5.png" alt="Logo">
+</div>
+<div class="brand">DEV PANEL</div>
+<div class="bsub">Developer Area</div>
+
+<div class="card">
+<div class="ct">Buat Akun Baru</div>
+<div class="cs">Buat akun buat user lain</div>
+
+<div class="ig">
+<span class="ic">👤</span>
+<input type="text" id="newUser" placeholder="Username baru" autocomplete="off">
 </div>
 
-<div class="demo">
-Demo akun: <span onclick="fillDemo('admin','admin123')">admin</span> / <span onclick="fillDemo('user','user123')">user</span>
+<div class="ig">
+<span class="ic">🔒</span>
+<input type="text" id="newPass" placeholder="Password baru">
+</div>
+
+<button class="btn" onclick="createAccount()">BUAT AKUN →</button>
+<button class="btn-outline" onclick="logoutDev()">← Logout</button>
+</div>
+
+<div class="card" style="margin-top:16px">
+<div class="ct" style="font-size:16px">Daftar Akun</div>
+<div id="accountList" style="text-align:left;font-size:12px;color:var(--d);margin-top:12px;max-height:200px;overflow-y:auto"></div>
 </div>
 </div>
 
@@ -114,21 +173,61 @@ Demo akun: <span onclick="fillDemo('admin','admin123')">admin</span> / <span onc
 </audio>
 
 <script>
-var themes={
-blue:{p:'#00d4ff',bg:'#05060a',c:'rgba(17,17,24,.7)'},
-red:{p:'#ef4444',bg:'#0a0505',c:'rgba(24,17,17,.7)'},
-green:{p:'#4ade80',bg:'#050a05',c:'rgba(17,24,17,.7)'},
-purple:{p:'#a855f7',bg:'#0a050f',c:'rgba(21,17,24,.7)'}
-};
+/* ============================================
+   ACCOUNT SYSTEM (LOCALSTORAGE)
+   ============================================ */
+var ACCOUNTS_KEY = 'beachx_accounts';
+var DEV_USERNAME = 'DevOffc';
+var DEV_PASSWORD = 'DevOffc123';
 
+function getAccounts(){
+try{
+return JSON.parse(localStorage.getItem(ACCOUNTS_KEY)) || {};
+}catch(e){return {}}
+}
+
+function saveAccounts(acc){
+localStorage.setItem(ACCOUNTS_KEY, JSON.stringify(acc));
+}
+
+function initDevAccount(){
+var acc = getAccounts();
+if(!acc[DEV_USERNAME]){
+acc[DEV_USERNAME] = {
+password: DEV_PASSWORD,
+role: 'developer',
+created: new Date().toISOString()
+};
+saveAccounts(acc);
+}
+}
+initDevAccount();
+
+/* ============================================
+   MUSIC
+   ============================================ */
 var soundOn = false;
 var bgSound = document.getElementById('bgSound');
+var musicStarted = false;
+
+function startMusic(){
+if(musicStarted)return;
+musicStarted = true;
+soundOn = true;
+bgSound.volume = 0.3;
+bgSound.play().catch(function(e){});
+document.getElementById('soundBtn').textContent = '🔊';
+}
 
 function toggleSound(){
+if(!musicStarted){
+startMusic();
+return;
+}
 soundOn = !soundOn;
 if(soundOn){
 bgSound.volume = 0.3;
-bgSound.play().catch(function(e){console.log('Audio blocked')});
+bgSound.play().catch(function(e){});
 document.getElementById('soundBtn').textContent = '🔊';
 showToast('Sound: ON');
 }else{
@@ -138,38 +237,134 @@ showToast('Sound: OFF');
 }
 }
 
-function setTheme(n,el){
-var t=themes[n];
-document.documentElement.style.setProperty('--p',t.p);
-document.documentElement.style.setProperty('--c',t.c);
-document.body.style.background=t.bg;
-document.querySelectorAll('.td').forEach(function(d){d.classList.remove('active')});
-if(el)el.classList.add('active');
-localStorage.setItem('beachx_theme',n);
-showToast('Tema: '+n);
+/* ============================================
+   NAVIGATION
+   ============================================ */
+function showPage(id){
+document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
+document.getElementById(id).classList.add('active');
 }
 
+function goLogin(){
+showPage('pageLogin');
+startMusic();
+showToast('Selamat datang di BeachX!');
+}
+
+function backToSplash(){
+showPage('pageSplash');
+}
+
+function buyAccess(){
+window.location.href = 'https://t.me/Devofficialacc';
+}
+
+function logoutDev(){
+localStorage.removeItem('beachx_logged');
+localStorage.removeItem('beachx_user');
+backToSplash();
+}
+
+/* ============================================
+   TOGGLE PASSWORD
+   ============================================ */
 function togglePass(){
 var p=document.getElementById('password');
 p.type=p.type==='password'?'text':'password';
 }
 
-function fillDemo(u,p){
-document.getElementById('username').value=u;
-document.getElementById('password').value=p;
-showToast('Akun demo terisi!');
-}
-
+/* ============================================
+   LOGIN
+   ============================================ */
 function doLogin(){
 var u=document.getElementById('username').value.trim();
 var p=document.getElementById('password').value.trim();
+
 if(!u||!p){showToast('Isi username & password!');return}
-localStorage.setItem('beachx_user',u);
-localStorage.setItem('beachx_logged','true');
-showToast('Selamat datang, '+u+'!');
-setTimeout(function(){window.location.href='index.html'},800);
+
+var acc = getAccounts();
+
+if(!acc[u]){
+showToast('❌ Akun tidak ditemukan!');
+return;
 }
 
+if(acc[u].password !== p){
+showToast('❌ Password salah!');
+return;
+}
+
+/* Simpan sesi */
+localStorage.setItem('beachx_user',u);
+localStorage.setItem('beachx_role',acc[u].role || 'user');
+localStorage.setItem('beachx_logged','true');
+
+/* Cek role */
+if(acc[u].role === 'developer'){
+showToast('👑 Selamat datang, Developer!');
+setTimeout(function(){showPage('pageDev'); renderAccounts();},800);
+}else{
+showToast('✅ Selamat datang, '+u+'!');
+setTimeout(function(){window.location.href='index.html';},800);
+}
+}
+
+/* ============================================
+   CREATE ACCOUNT (KHUSUS DEV)
+   ============================================ */
+function createAccount(){
+var u=document.getElementById('newUser').value.trim();
+var p=document.getElementById('newPass').value.trim();
+
+if(!u||!p){showToast('Isi username & password baru!');return}
+if(u.length < 3){showToast('Username minimal 3 karakter!');return}
+if(p.length < 4){showToast('Password minimal 4 karakter!');return}
+
+var acc = getAccounts();
+
+if(acc[u]){
+showToast('❌ Username sudah dipakai!');
+return;
+}
+
+acc[u] = {
+password: p,
+role: 'user',
+created: new Date().toISOString()
+};
+saveAccounts(acc);
+
+document.getElementById('newUser').value='';
+document.getElementById('newPass').value='';
+showToast('✅ Akun '+u+' berhasil dibuat!');
+renderAccounts();
+}
+
+/* ============================================
+   RENDER ACCOUNT LIST
+   ============================================ */
+function renderAccounts(){
+var acc = getAccounts();
+var list = document.getElementById('accountList');
+var html = '';
+var keys = Object.keys(acc);
+if(keys.length === 0){
+list.innerHTML = '<div style="color:var(--dd);text-align:center;padding:12px">Belum ada akun</div>';
+return;
+}
+keys.forEach(function(k){
+var role = acc[k].role === 'developer' ? ' 👑' : '';
+html += '<div style="padding:8px 0;border-bottom:1px solid rgba(255,255,255,.03);display:flex;justify-content:space-between">'+
+'<span style="color:#fff">'+k+role+'</span>'+
+'<span style="color:var(--dd);font-size:11px">'+acc[k].password+'</span>'+
+'</div>';
+});
+list.innerHTML = html;
+}
+
+/* ============================================
+   TOAST
+   ============================================ */
 function showToast(m){
 var el=document.getElementById('toast');
 el.textContent=m;el.classList.add('show');
@@ -177,22 +372,15 @@ clearTimeout(el._t);
 el._t=setTimeout(function(){el.classList.remove('show')},2500);
 }
 
-var saved=localStorage.getItem('beachx_theme')||'blue';
-var t2=themes[saved];
-if(t2){
-document.documentElement.style.setProperty('--p',t2.p);
-document.documentElement.style.setProperty('--c',t2.c);
-document.body.style.background=t2.bg;
+/* ============================================
+   CEK SESI (AUTO LOGIN)
+   ============================================ */
+var logged = localStorage.getItem('beachx_logged');
+var role = localStorage.getItem('beachx_role');
+if(logged === 'true' && role === 'developer'){
+showPage('pageDev');
+renderAccounts();
 }
-
-document.body.addEventListener('click', function once(){
-if(!soundOn){
-soundOn = true;
-bgSound.volume = 0.3;
-bgSound.play().catch(function(e){});
-document.getElementById('soundBtn').textContent = '🔊';
-}
-}, { once: true });
 </script>
 </body>
 </html>
