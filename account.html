@@ -5,37 +5,77 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>BEACHX — Login</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;-webkit-tap-highlight-color:transparent}
-body{background:#0a0a12;color:#fff;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:24px;transition:background .4s}
-:root{--p:#00d4ff;--c:#111118;--b:#1a1a2a;--d:#555;--dd:#333}
-.lc{display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;max-width:400px;text-align:center}
-.logo{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#0a1a2a,#1a2a4a);display:flex;align-items:center;justify-content:center;font-size:40px;margin-bottom:20px;border:2px solid rgba(0,212,255,.1)}
-.brand{font-size:32px;font-weight:800;letter-spacing:6px;background:linear-gradient(135deg,#00d4ff,#0088cc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px}
-.bsub{font-size:11px;color:var(--dd);letter-spacing:4px;margin-bottom:40px}
-.card{background:var(--c);border-radius:20px;padding:24px 20px;width:100%;border:1px solid var(--b)}
-.ct{font-size:22px;font-weight:700;margin-bottom:4px;text-align:left}
-.cs{font-size:13px;color:var(--d);margin-bottom:24px;text-align:left}
-.ig{display:flex;align-items:center;background:#0d0d15;border:1px solid var(--b);border-radius:12px;padding:12px 16px;margin-bottom:12px;transition:.3s}
-.ig:focus-within{border-color:var(--p)}
-.ig .ic{font-size:18px;margin-right:12px;color:var(--dd)}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+body{background:#05060a;color:#fff;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:24px;overflow:hidden;position:relative}
+body::before{content:'';position:absolute;top:-30%;left:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,212,255,.08),transparent 70%);border-radius:50%;animation:float 8s ease-in-out infinite;z-index:0}
+body::after{content:'';position:absolute;bottom:-30%;right:-20%;width:500px;height:500px;background:radial-gradient(circle,rgba(168,85,247,.06),transparent 70%);border-radius:50%;animation:float 10s ease-in-out infinite reverse;z-index:0}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-30px)}}
+
+.banner-video{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.08;z-index:0;pointer-events:none}
+
+:root{--p:#00d4ff;--c:rgba(17,17,24,.7);--b:rgba(255,255,255,.06);--d:#666;--dd:#333}
+
+.lc{display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;max-width:400px;text-align:center;position:relative;z-index:1}
+
+.logo{width:110px;height:110px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-bottom:24px;border:2px solid rgba(0,212,255,.2);box-shadow:0 0 60px rgba(0,212,255,.15),inset 0 0 30px rgba(0,212,255,.05);animation:pulse 3s ease-in-out infinite;background:linear-gradient(135deg,rgba(0,212,255,.1),rgba(168,85,247,.1))}
+.logo img{width:100%;height:100%;object-fit:cover}
+@keyframes pulse{0%,100%{box-shadow:0 0 60px rgba(0,212,255,.15)}50%{box-shadow:0 0 90px rgba(0,212,255,.3)}}
+
+.brand{font-size:38px;font-weight:900;letter-spacing:8px;background:linear-gradient(135deg,#00d4ff,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px;background-size:200% 200%;animation:gradient 4s ease infinite}
+@keyframes gradient{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+.bsub{font-size:10px;color:var(--dd);letter-spacing:6px;margin-bottom:48px;text-transform:uppercase}
+
+.card{background:var(--c);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-radius:28px;padding:32px 28px;width:100%;border:1px solid var(--b);box-shadow:0 20px 60px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.03)}
+
+.ct{font-size:24px;font-weight:700;margin-bottom:6px;text-align:left;background:linear-gradient(135deg,#fff,#aaa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.cs{font-size:13px;color:var(--d);margin-bottom:28px;text-align:left}
+
+.ig{display:flex;align-items:center;background:rgba(0,0,0,.3);border:1px solid var(--b);border-radius:16px;padding:14px 18px;margin-bottom:14px;transition:.3s}
+.ig:focus-within{border-color:var(--p);box-shadow:0 0 0 4px rgba(0,212,255,.05),0 0 20px rgba(0,212,255,.1)}
+.ig .ic{font-size:18px;margin-right:14px;color:var(--dd);transition:.3s}
+.ig:focus-within .ic{color:var(--p)}
 .ig input{flex:1;background:transparent;border:none;outline:none;color:#fff;font-size:14px}
 .ig input::placeholder{color:var(--dd)}
-.tp{cursor:pointer;color:var(--dd);font-size:16px}
-.btn{width:100%;padding:16px;border-radius:12px;border:1px solid var(--p);background:transparent;color:var(--p);font-size:15px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:.3s;margin-top:8px}
-.btn:hover,.btn:active{background:var(--p);color:#000}
-.tm{display:flex;gap:8px;justify-content:center;margin-top:20px}
-.td{width:24px;height:24px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:.3s}
-.td:hover,.td.active{border-color:#fff;transform:scale(1.1)}
-.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:rgba(0,212,255,.9);color:#000;padding:12px 24px;border-radius:60px;font-size:13px;font-weight:600;display:none;z-index:300}
-.toast.show{display:block}
+.tp{cursor:pointer;color:var(--dd);font-size:16px;transition:.3s}
+.tp:hover{color:var(--p)}
+
+.btn{width:100%;padding:18px;border-radius:16px;border:none;background:linear-gradient(135deg,#00d4ff,#0088cc);color:#000;font-size:15px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:.3s;margin-top:10px;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(0,212,255,.2)}
+.btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);transition:.5s}
+.btn:hover::before{left:100%}
+.btn:hover{transform:translateY(-2px);box-shadow:0 15px 40px rgba(0,212,255,.3)}
+.btn:active{transform:translateY(0) scale(.98)}
+
+.tm{display:flex;gap:10px;justify-content:center;margin-top:24px}
+.td{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:.3s;position:relative}
+.td:hover,.td.active{border-color:#fff;transform:scale(1.15);box-shadow:0 0 20px currentColor}
+
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:rgba(0,212,255,.95);color:#000;padding:14px 28px;border-radius:60px;font-size:13px;font-weight:600;display:none;z-index:300;box-shadow:0 10px 40px rgba(0,212,255,.3)}
+.toast.show{display:block;animation:toastIn .3s ease}
+@keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+.demo{font-size:11px;color:var(--dd);margin-top:20px;line-height:1.8}
+.demo span{color:var(--p);cursor:pointer}
+.demo span:hover{text-decoration:underline}
+
+.sound-btn{position:fixed;top:20px;right:20px;width:44px;height:44px;border-radius:50%;background:rgba(17,17,24,.7);backdrop-filter:blur(20px);border:1px solid var(--b);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:100;transition:.3s;font-size:18px}
+.sound-btn:hover{border-color:var(--p);transform:scale(1.1)}
 </style>
 </head>
 <body>
 
+<video class="banner-video" autoplay muted loop playsinline>
+<source src="https://files.catbox.moe/flixdp.mp4" type="video/mp4">
+</video>
+
+<div class="sound-btn" id="soundBtn" onclick="toggleSound()">🔇</div>
+
 <div class="lc">
-<div class="logo">🐺</div>
+<div class="logo">
+<img src="https://files.catbox.moe/bhkin5.png" alt="Logo">
+</div>
 <div class="brand">BEACHX</div>
-<div class="bsub">SILAHKAN LOGIN</div>
+<div class="bsub">Silahkan Login</div>
 
 <div class="card">
 <div class="ct">Welcome back</div>
@@ -56,22 +96,47 @@ body{background:#0a0a12;color:#fff;min-height:100vh;display:flex;justify-content
 </div>
 
 <div class="tm">
-<div class="td active" style="background:#00d4ff" onclick="setTheme('blue',this)"></div>
-<div class="td" style="background:#ef4444" onclick="setTheme('red',this)"></div>
-<div class="td" style="background:#4ade80" onclick="setTheme('green',this)"></div>
-<div class="td" style="background:#a855f7" onclick="setTheme('purple',this)"></div>
+<div class="td active" style="background:#00d4ff;color:#00d4ff" onclick="setTheme('blue',this)"></div>
+<div class="td" style="background:#ef4444;color:#ef4444" onclick="setTheme('red',this)"></div>
+<div class="td" style="background:#4ade80;color:#4ade80" onclick="setTheme('green',this)"></div>
+<div class="td" style="background:#a855f7;color:#a855f7" onclick="setTheme('purple',this)"></div>
+</div>
+
+<div class="demo">
+Demo akun: <span onclick="fillDemo('admin','admin123')">admin</span> / <span onclick="fillDemo('user','user123')">user</span>
 </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
+<audio id="bgSound" loop>
+<source src="https://files.catbox.moe/r1tkig.mp3" type="audio/mpeg">
+</audio>
+
 <script>
 var themes={
-blue:{p:'#00d4ff',bg:'#0a0a12',c:'#111118'},
-red:{p:'#ef4444',bg:'#120a0a',c:'#181111'},
-green:{p:'#4ade80',bg:'#0a120a',c:'#111811'},
-purple:{p:'#a855f7',bg:'#0f0a12',c:'#151118'}
+blue:{p:'#00d4ff',bg:'#05060a',c:'rgba(17,17,24,.7)'},
+red:{p:'#ef4444',bg:'#0a0505',c:'rgba(24,17,17,.7)'},
+green:{p:'#4ade80',bg:'#050a05',c:'rgba(17,24,17,.7)'},
+purple:{p:'#a855f7',bg:'#0a050f',c:'rgba(21,17,24,.7)'}
 };
+
+var soundOn = false;
+var bgSound = document.getElementById('bgSound');
+
+function toggleSound(){
+soundOn = !soundOn;
+if(soundOn){
+bgSound.volume = 0.3;
+bgSound.play().catch(function(e){console.log('Audio blocked')});
+document.getElementById('soundBtn').textContent = '🔊';
+showToast('Sound: ON');
+}else{
+bgSound.pause();
+document.getElementById('soundBtn').textContent = '🔇';
+showToast('Sound: OFF');
+}
+}
 
 function setTheme(n,el){
 var t=themes[n];
@@ -87,6 +152,12 @@ showToast('Tema: '+n);
 function togglePass(){
 var p=document.getElementById('password');
 p.type=p.type==='password'?'text':'password';
+}
+
+function fillDemo(u,p){
+document.getElementById('username').value=u;
+document.getElementById('password').value=p;
+showToast('Akun demo terisi!');
 }
 
 function doLogin(){
@@ -113,6 +184,15 @@ document.documentElement.style.setProperty('--p',t2.p);
 document.documentElement.style.setProperty('--c',t2.c);
 document.body.style.background=t2.bg;
 }
+
+document.body.addEventListener('click', function once(){
+if(!soundOn){
+soundOn = true;
+bgSound.volume = 0.3;
+bgSound.play().catch(function(e){});
+document.getElementById('soundBtn').textContent = '🔊';
+}
+}, { once: true });
 </script>
 </body>
 </html>
