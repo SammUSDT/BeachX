@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>BEACHX — Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            background: #0a0a12;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            transition: background 0.4s;
+        }
+        :root {
+            --primary: #00d4ff;
+            --card: #111118;
+            --border: #1a1a2a;
+            --text-dim: #555;
+            --text-dark: #333;
+        }
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .logo-circle {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0a1a2a, #1a2a4a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin-bottom: 20px;
+            border: 2px solid rgba(0, 212, 255, 0.1);
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.05);
+        }
+        .brand {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: 6px;
+            background: linear-gradient(135deg, #00d4ff, #0088cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 4px;
+        }
+        .brand-sub {
+            font-size: 11px;
+            color: var(--text-dark);
+            letter-spacing: 4px;
+            margin-bottom: 40px;
+        }
+        .card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 24px 20px;
+            width: 100%;
+            border: 1px solid var(--border);
+        }
+        .card-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            text-align: left;
+        }
+        .card-sub {
+            font-size: 13px;
+            color: var(--text-dim);
+            margin-bottom: 24px;
+            text-align: left;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            background: #0d0d15;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 12px;
+            transition: 0.3s;
+        }
+        .input-group:focus-within {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.05);
+        }
+        .input-group .icon {
+            font-size: 18px;
+            margin-right: 12px;
+            color: var(--text-dark);
+        }
+        .input-group input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            font-size: 14px;
+        }
+        .input-group input::placeholder {
+            color: var(--text-dark);
+        }
+        .input-group .toggle-pass {
+            cursor: pointer;
+            color: var(--text-dark);
+            font-size: 16px;
+        }
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 8px;
+        }
+        .btn:hover, .btn:active {
+            background: var(--primary);
+            color: #000;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+        }
+        .theme-mini {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .theme-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: 0.3s;
+        }
+        .theme-dot:hover, .theme-dot.active {
+            border-color: #fff;
+            transform: scale(1.1);
+        }
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 212, 255, 0.9);
+            color: #000;
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-size: 13px;
+            font-weight: 600;
+            display: none;
+            z-index: 300;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+        .toast.show {
+            display: block;
+            animation: toastIn 0.3s ease;
+        }
+        @keyframes toastIn {
+            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="logo-circle">🐺</div>
+        <div class="brand">BEACHX</div>
+        <div class="brand-sub">SILAHKAN LOGIN</div>
+
+        <div class="card">
+            <div class="card-title">Welcome back</div>
+            <div class="card-sub">Masukkan Akunmu</div>
+
+            <div class="input-group">
+                <span class="icon">👤</span>
+                <input type="text" id="username" placeholder="Username" autocomplete="off">
+            </div>
+
+            <div class="input-group">
+                <span class="icon">🔒</span>
+                <input type="password" id="password" placeholder="Password">
+                <span class="toggle-pass" onclick="togglePass()">👁</span>
+            </div>
+
+            <button class="btn" onclick="doLogin()">SIGN IN →</button>
+        </div>
+
+        <div class="theme-mini">
+            <div class="theme-dot active" style="background: #00d4ff;" onclick="setTheme('blue', this)"></div>
+            <div class="theme-dot" style="background: #ef4444;" onclick="setTheme('red', this)"></div>
+            <div class="theme-dot" style="background: #4ade80;" onclick="setTheme('green', this)"></div>
+            <div class="theme-dot" style="background: #a855f7;" onclick="setTheme('purple', this)"></div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // ============================================
+        // THEME CONFIG
+        // ============================================
+        const themes = {
+            blue: { primary: '#00d4ff', bg: '#0a0a12', card: '#111118' },
+            red: { primary: '#ef4444', bg: '#120a0a', card: '#181111' },
+            green: { primary: '#4ade80', bg: '#0a120a', card: '#111811' },
+            purple: { primary: '#a855f7', bg: '#0f0a12', card: '#151118' }
+        };
+
+        function setTheme(name, el) {
+            const t = themes[name];
+            document.documentElement.style.setProperty('--primary', t.primary);
+            document.documentElement.style.setProperty('--card', t.card);
+            document.body.style.background = t.bg;
+
+            document.querySelectorAll('.theme-dot').forEach(d => d.classList.remove('active'));
+            if (el) el.classList.add('active');
+
+            // Simpan tema ke localStorage
+            localStorage.setItem('beachx_theme', name);
+            showToast('Tema: ' + name);
+        }
+
+        // ============================================
+        // TOGGLE PASSWORD
+        // ============================================
+        function togglePass() {
+            const pass = document.getElementById('password');
+            pass.type = pass.type === 'password' ? 'text' : 'password';
+        }
+
+        // ============================================
+        // LOGIN
+        // ============================================
+        function doLogin() {
+            const user = document.getElementById('username').value.trim();
+            const pass = document.getElementById('password').value.trim();
+
+            if (!user || !pass) {
+                showToast('Isi username & password!');
+                return;
+            }
+
+            // Simpan username & status login
+            localStorage.setItem('beachx_user', user);
+            localStorage.setItem('beachx_logged', 'true');
+
+            showToast('Selamat datang, ' + user + '!');
+
+            // Redirect ke dashboard
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 800);
+        }
+
+        // ============================================
+        // TOAST
+        // ============================================
+        function showToast(msg) {
+            const el = document.getElementById('toast');
+            el.textContent = msg;
+            el.classList.add('show');
+            clearTimeout(el._timer);
+            el._timer = setTimeout(() => el.classList.remove('show'), 2500);
+        }
+
+        // ============================================
+        // INIT — LOAD THEME
+        // ============================================
+        const savedTheme = localStorage.getItem('beachx_theme') || 'blue';
+        const t = themes[savedTheme];
+        if (t) {
+            document.documentElement.style.setProperty('--primary', t.primary);
+            document.documentElement.style.setProperty('--card', t.card);
+            document.body.style.background = t.bg;
+        }
+
+        console.log('🐺 BEACHX Login loaded');
+    </script>
+
+</body>
+</html>
