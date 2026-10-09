@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>BEACHX — Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            background: #0a0a12;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background 0.4s;
+            padding: 16px;
+        }
+        :root {
+            --primary: #00d4ff;
+            --card: #111118;
+            --border: #1a1a2a;
+            --text-dim: #555;
+            --text-dark: #333;
+        }
+
+        /* ===== HEADER ===== */
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .dashboard-header h1 {
+            font-size: 40px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .dashboard-header p {
+            font-size: 11px;
+            color: var(--text-dark);
+            letter-spacing: 2px;
+            margin-top: 4px;
+        }
+
+        /* ===== PROMO ===== */
+        .promo-card {
+            background: linear-gradient(135deg, #0d1a2a, #111118);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .promo-card:hover {
+            border-color: rgba(0, 212, 255, 0.2);
+            transform: scale(1.01);
+        }
+        .promo-card .badge {
+            font-size: 10px;
+            color: var(--primary);
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+        .promo-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .promo-card p {
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+
+        /* ===== WELCOME ===== */
+        .welcome-card {
+            background: var(--card);
+            border-radius: 24px;
+            padding: 28px 20px;
+            text-align: center;
+            margin-bottom: 16px;
+            border: 1px solid var(--border);
+        }
+        .welcome-card .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00d4ff, #0088cc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin: 0 auto 12px;
+        }
+        .welcome-card .greeting {
+            font-size: 12px;
+            color: var(--text-dim);
+            margin-bottom: 4px;
+        }
+        .welcome-card .name {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        .welcome-card .role {
+            display: inline-block;
+            padding: 4px 20px;
+            border-radius: 30px;
+            background: rgba(0, 212, 255, 0.08);
+            color: var(--primary);
+            font-size: 11px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        /* ===== STATS ===== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .stat-item {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 16px 8px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        .stat-item .number {
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+        }
+        .stat-item .label {
+            font-size: 9px;
+            color: var(--text-dark);
+            margin-top: 4px;
+            letter-spacing: 1px;
+        }
+
+        /* ===== SECTION ===== */
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            margin-top: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .section-title .count {
+            font-size: 11px;
+            color: var(--primary);
+            background: rgba(0, 212, 255, 0.05);
+            padding: 4px 12px;
+            border-radius: 30px;
+        }
+
+        /* ===== THEME PICKER ===== */
+        .theme-picker {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .theme-dot {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: 0.3s;
+        }
+        .theme-dot:hover, .theme-dot.active {
+            border-color: #fff;
+            transform: scale(1.1);
+        }
+
+        /* ===== MENU ===== */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 80px;
+        }
+        .menu-item {
+            background: var(--card);
+            border-radius: 18px;
+            padding: 20px 16px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .menu-item:hover {
+            border-color: rgba(0, 212, 255, 0.15);
+            background: #151520;
+            transform: translateY(-2px);
+        }
+        .menu-item .menu-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .menu-item .menu-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .menu-item .menu-desc {
+            font-size: 11px;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+        .menu-item .menu-badge {
+            display: inline-block;
+            font-size: 9px;
+            color: var(--primary);
+            background: rgba(0, 212, 255, 0.05);
+            padding: 2px 10px;
+            border-radius: 30px;
+            margin-top: 8px;
+            letter-spacing: 1px;
+        }
+
+        /* ===== BOTTOM NAV ===== */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 18, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0 20px;
+            z-index: 100;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 10px;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: 0.2s;
+            letter-spacing: 1px;
+        }
+        .nav-item.active {
+            color: var(--primary);
+        }
+        .nav-item .nav-icon {
+            font-size: 20px;
+            margin-bottom: 2px;
+        }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            padding: 24px;
+        }
+        .modal-overlay.show {
+            display: flex;
+        }
+        .modal {
+            background: var(--card);
+            border-radius: 24px;
+            padding: 24px;
+            width: 100%;
+            max-width: 360px;
+            border: 1px solid var(--border);
+            animation: modalIn 0.3s ease;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .modal h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .modal p {
+            font-size: 13px;
+            color: var(--text-dim);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        .modal .modal-btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            background: var(--primary);
+            color: #000;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            letter-spacing: 1px;
+        }
+        .modal .modal-btn.close {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            margin-top: 8px;
+        }
+
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 212, 255, 0.9);
+            color: #000;
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-size: 13px;
+            font-weight: 600;
+            display: none;
+            z-index: 300;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+        .toast.show {
+            display: block;
+            animation: toastIn 0.3s ease;
+        }
+        @keyframes toastIn {
+            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="dashboard-header">
+        <h1>beachx</h1>
+        <p>Design By OTA and Enjoy For Use This Apps</p>
+    </div>
+
+    <!-- PROMO -->
+    <div class="promo-card" onclick="openModal('promo')">
+        <div class="badge">PROMO</div>
+        <h3>Pterodactyl Panel</h3>
+        <p>Beli server bot pribadi kamu sekarang</p>
+    </div>
+
+    <!-- WELCOME -->
+    <div class="welcome-card">
+        <div class="avatar">👤</div>
+        <div class="greeting">Ahlan Wa Sahlan!!</div>
+        <div class="name" id="displayName">User</div>
+        <div class="role">FULLUP</div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-grid">
+        <div class="stat-item">
+            <div class="number">0</div>
+            <div class="label">Online Users</div>
+        </div>
+        <div class="stat-item">
+            <div class="number">0</div>
+            <div class="label">Connections</div>
+        </div>
+        <div class="stat-item">
+            <div class="number" id="expiryDate">9/7/2029</div>
+            <div class="label">Expiration</div>
+        </div>
+    </div>
+
+    <!-- THEME PICKER -->
+    <div class="section-title">
+        🎨 Pilih Tema
+        <span class="count" id="themeName">Blue</span>
+    </div>
+    <div class="theme-picker">
+        <div class="theme-dot active" style="background: #00d4ff;" onclick="setTheme('blue', this)"></div>
+        <div class="theme-dot" style="background: #ef4444;" onclick="setTheme('red', this)"></div>
+        <div class="theme-dot" style="background: #4ade80;" onclick="setTheme('green', this)"></div>
+        <div class="theme-dot" style="background: #a855f7;" onclick="setTheme('purple', this)"></div>
+        <div class="theme-dot" style="background: #f59e0b;" onclick="setTheme('orange', this)"></div>
+        <div class="theme-dot" style="background: #ec4899;" onclick="setTheme('pink', this)"></div>
+    </div>
+
+    <!-- MENU -->
+    <div class="section-title">
+        🐛 Bug Menu
+        <span class="count">11 Modules</span>
+    </div>
+    <div class="menu-grid">
+        <div class="menu-item" onclick="openModal('manta')">
+            <div class="menu-icon">🐀</div>
+            <div class="menu-title">Manta Bug</div>
+            <div class="menu-desc">Bug tanpa custom</div>
+            <span class="menu-badge">RECOMMENDED</span>
+        </div>
+        <div class="menu-item" onclick="openModal('custom')">
+            <div class="menu-icon">⚙️</div>
+            <div class="menu-title">Custom Bug</div>
+            <div class="menu-desc">Menu custom bug</div>
+            <span class="menu-badge">CUSTOM</span>
+        </div>
+        <div class="menu-item" onclick="openModal('tools')">
+            <div class="menu-icon">🛠️</div>
+            <div class="menu-title">Tools</div>
+            <div class="menu-desc">Berbagai tools</div>
+            <span class="menu-badge">TOOLS</span>
+        </div>
+        <div class="menu-item" onclick="openModal('info')">
+            <div class="menu-icon">ℹ️</div>
+            <div class="menu-title">Info</div>
+            <div class="menu-desc">Informasi aplikasi</div>
+            <span class="menu-badge">INFO</span>
+        </div>
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <div class="bottom-nav">
+        <div class="nav-item active">
+            <div class="nav-icon">🏠</div>
+            Home
+        </div>
+        <div class="nav-item" onclick="showToast('Fitur Chat segera hadir!')">
+            <div class="nav-icon">💬</div>
+            Chat
+        </div>
+        <div class="nav-item" onclick="showToast('Fitur Users segera hadir!')">
+            <div class="nav-icon">👥</div>
+            Users
+        </div>
+        <div class="nav-item" onclick="logout()">
+            <div class="nav-icon">🚪</div>
+            Logout
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <h3 id="modalTitle">Title</h3>
+            <p id="modalDesc">Description</p>
+            <button class="modal-btn" onclick="closeModal()">OK</button>
+            <button class="modal-btn close" onclick="closeModal()">Tutup</button>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // ============================================
+        // CEK LOGIN
+        // ============================================
+        const logged = localStorage.getItem('beachx_logged');
+        const user = localStorage.getItem('beachx_user');
+
+        if (!logged || logged !== 'true') {
+            window.location.href = 'account.html';
+        } else {
+            document.getElementById('displayName').textContent = user || 'User';
+        }
+
+        // ============================================
+        // THEME CONFIG
+        // ============================================
+        const themes = {
+            blue: { primary: '#00d4ff', bg: '#0a0a12', card: '#111118' },
+            red: { primary: '#ef4444', bg: '#120a0a', card: '#181111' },
+            green: { primary: '#4ade80', bg: '#0a120a', card: '#111811' },
+            purple: { primary: '#a855f7', bg: '#0f0a12', card: '#151118' },
+            orange: { primary: '#f59e0b', bg: '#120f0a', card: '#181511' },
+            pink: { primary: '#ec4899', bg: '#120a0f', card: '#181115' }
+        };
+
+        function setTheme(name, el) {
+            const t = themes[name];
+            document.documentElement.style.setProperty('--primary', t.primary);
+            document.documentElement.style.setProperty('--card', t.card);
+            document.body.style.background = t.bg;
+
+            document.querySelectorAll('.theme-dot').forEach(d => d.classList.remove('active'));
+            if (el) el.classList.add('active');
+
+            document.getElementById('themeName').textContent = name.charAt(0).toUpperCase() + name.slice(1);
+            localStorage.setItem('beachx_theme', name);
+            showToast('Tema: ' + name);
+        }
+
+        // ============================================
+        // MODAL
+        // ============================================
+        const modalData = {
+            promo: {
+                title: '🛒 Pterodactyl Panel',
+                desc: 'Beli server bot pribadi kamu sekarang! Harga mulai dari Rp 10.000/bulan. Hubungi admin untuk info lebih lanjut.'
+            },
+            manta: {
+                title: '🐀 Manta Bug',
+                desc: 'Bug tanpa custom. Gunakan langsung tanpa custom delay dan loops.'
+            },
+            custom: {
+                title: '⚙️ Custom Bug',
+                desc: 'Menu custom bug. Buat menu bug, delay pengiriman dan loops.'
+            },
+            tools: {
+                title: '🛠️ Tools',
+                desc: 'Berbagai tools yang tersedia: Theme Switcher, Sound Manager, dan lainnya.'
+            },
+            info: {
+                title: 'ℹ️ Info',
+                desc: 'BEACHX v1.0 — Aplikasi bug menu untuk gaya-gayaan. Dibuat oleh OTA. Enjoy!'
+            }
+        };
+
+        function openModal(key) {
+            const data = modalData[key];
+            if (!data) return;
+            document.getElementById('modalTitle').textContent = data.title;
+            document.getElementById('modalDesc').textContent = data.desc;
+            document.getElementById('modalOverlay').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('show');
+        }
+
+        // ============================================
+        // LOGOUT
+        // ============================================
+        function logout() {
+            if (!confirm('Yakin mau logout?')) return;
+            localStorage.removeItem('beachx_logged');
+            localStorage.removeItem('beachx_user');
+            window.location.href = 'account.html';
+        }
+
+        // ============================================
+        // TOAST
+        // ============================================
+        function showToast(msg) {
+            const el = document.getElementById('toast');
+            el.textContent = msg;
+            el.classList.add('show');
+            clearTimeout(el._timer);
+            el._timer = setTimeout(() => el.classList.remove('show'), 2500);
+        }
+
+        // ============================================
+        // INIT
+        // ============================================
+        const expiry = new Date();
+        expiry.setFullYear(expiry.getFullYear() + 3);
+        document.getElementById('expiryDate').textContent =
+            (expiry.getMonth() + 1) + '/' + expiry.getDate() + '/' + expiry.getFullYear();
+
+        // Load theme
+        const savedTheme = localStorage.getItem('beachx_theme') || 'blue';
+        const t = themes[savedTheme];
+        if (t) {
+            document.documentElement.style.setProperty('--primary', t.primary);
+            document.documentElement.style.setProperty('--card', t.card);
+            document.body.style.background = t.bg;
+            document.getElementById('themeName').textContent =
+                savedTheme.charAt(0).toUpperCase() + savedTheme.slice(1);
+        }
+
+        console.log('🐺 BEACHX Dashboard loaded');
+    </script>
+
+</body>
+</html>
