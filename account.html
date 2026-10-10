@@ -71,16 +71,8 @@ body::after{content:'';position:absolute;bottom:-30%;right:-20%;width:500px;heig
 
 <div class="sound-btn" id="soundBtn" onclick="toggleSound()">🔇</div>
 
-<!-- PAGE 0: INTRO VIDEO -->
-<div class="page active" id="pageIntro">
-<video id="introVideo" autoplay muted playsinline style="position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1000">
-<source src="https://files.catbox.moe/36s9hv.mp4" type="video/mp4">
-</video>
-<button class="skip-btn" onclick="skipIntro()">SKIP →</button>
-</div>
-
 <!-- PAGE 1: SPLASH -->
-<div class="page" id="pageSplash">
+<div class="page active" id="pageSplash">
 <div class="logo"><img src="https://files.catbox.moe/bhkin5.png" alt="Logo"></div>
 <div class="brand">BEACHX</div>
 <div class="bsub">Premium Access</div>
@@ -119,7 +111,15 @@ body::after{content:'';position:absolute;bottom:-30%;right:-20%;width:500px;heig
 </div>
 </div>
 
-<!-- PAGE 3: DEV PANEL -->
+<!-- PAGE 3: INTRO VIDEO (setelah login) -->
+<div class="page" id="pageIntro">
+<video id="introVideo" autoplay muted playsinline style="position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1000">
+<source src="https://files.catbox.moe/36s9hv.mp4" type="video/mp4">
+</video>
+<button class="skip-btn" onclick="skipIntro()">SKIP →</button>
+</div>
+
+<!-- PAGE 4: DEV PANEL -->
 <div class="page" id="pageDev">
 <div class="logo"><img src="https://files.catbox.moe/bhkin5.png" alt="Logo"></div>
 <div class="brand">DEV PANEL</div>
@@ -205,23 +205,6 @@ checkExpired();
 setInterval(checkExpired, 60000);
 
 /* ============================================
-   INTRO VIDEO
-   ============================================ */
-function skipIntro(){
-document.getElementById('pageIntro').classList.remove('active');
-document.getElementById('pageSplash').classList.add('active');
-var v = document.getElementById('introVideo');
-if(v){ v.pause(); v.src = ''; }
-}
-
-var introVideo = document.getElementById('introVideo');
-if(introVideo){
-introVideo.addEventListener('ended', function(){
-skipIntro();
-});
-}
-
-/* ============================================
    MUSIC
    ============================================ */
 var soundOn = false;
@@ -277,7 +260,7 @@ p.type=p.type==='password'?'text':'password';
 }
 
 /* ============================================
-   LOGIN
+   LOGIN → VIDEO INTRO → DASHBOARD
    ============================================ */
 function doLogin(){
 var u=document.getElementById('username').value.trim();
@@ -292,16 +275,50 @@ delete acc[u];saveAccounts(acc);
 showToast('❌ Akun sudah expired!',true);
 return;
 }
+
+/* Simpan sesi */
 localStorage.setItem('beachx_user',u);
 localStorage.setItem('beachx_role',acc[u].role || 'user');
 localStorage.setItem('beachx_logged','true');
-if(acc[u].role === 'developer'){
-showToast('👑 Selamat datang, Developer!');
-setTimeout(function(){showPage('pageDev');renderAccounts();},800);
-}else{
-showToast('✅ Selamat datang, '+u+'!');
-setTimeout(function(){window.location.href='index.html';},800);
+
+/* Simpan role buat setelah video */
+window._pendingRole = acc[u].role || 'user';
+window._pendingUser = u;
+
+/* Tampilkan video intro */
+showPage('pageIntro');
+var v = document.getElementById('introVideo');
+if(v){
+v.currentTime = 0;
+v.play().catch(function(e){});
 }
+}
+
+/* ============================================
+   INTRO VIDEO
+   ============================================ */
+function skipIntro(){
+var v = document.getElementById('introVideo');
+if(v){ v.pause(); }
+
+var role = window._pendingRole || 'user';
+var user = window._pendingUser || 'user';
+
+if(role === 'developer'){
+showToast('👑 Selamat datang, Developer!');
+showPage('pageDev');
+renderAccounts();
+}else{
+showToast('✅ Selamat datang, '+user+'!');
+setTimeout(function(){window.location.href='index.html';},500);
+}
+}
+
+var introVideo = document.getElementById('introVideo');
+if(introVideo){
+introVideo.addEventListener('ended', function(){
+skipIntro();
+});
 }
 
 /* ============================================
