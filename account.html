@@ -59,6 +59,8 @@ body::after{content:'';position:absolute;bottom:-30%;right:-20%;width:500px;heig
 .acc-item .info .meta .timer.danger{color:#ef4444}
 .acc-item .info .meta .permanent{color:#00d4ff}
 .acc-item .actions{display:flex;gap:6px;flex-shrink:0}
+.skip-btn{position:fixed;top:20px;right:20px;z-index:1001;padding:10px 20px;border-radius:30px;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.5);backdrop-filter:blur(10px);color:#fff;font-size:12px;font-weight:600;letter-spacing:1px;cursor:pointer;transition:.3s}
+.skip-btn:hover{background:rgba(0,0,0,.8);border-color:var(--p)}
 </style>
 </head>
 <body>
@@ -69,7 +71,16 @@ body::after{content:'';position:absolute;bottom:-30%;right:-20%;width:500px;heig
 
 <div class="sound-btn" id="soundBtn" onclick="toggleSound()">🔇</div>
 
-<div class="page active" id="pageSplash">
+<!-- PAGE 0: INTRO VIDEO -->
+<div class="page active" id="pageIntro">
+<video id="introVideo" autoplay muted playsinline style="position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1000">
+<source src="https://files.catbox.moe/36s9hv.mp4" type="video/mp4">
+</video>
+<button class="skip-btn" onclick="skipIntro()">SKIP →</button>
+</div>
+
+<!-- PAGE 1: SPLASH -->
+<div class="page" id="pageSplash">
 <div class="logo"><img src="https://files.catbox.moe/bhkin5.png" alt="Logo"></div>
 <div class="brand">BEACHX</div>
 <div class="bsub">Premium Access</div>
@@ -86,6 +97,7 @@ body::after{content:'';position:absolute;bottom:-30%;right:-20%;width:500px;heig
 </div>
 </div>
 
+<!-- PAGE 2: LOGIN -->
 <div class="page" id="pageLogin">
 <div class="logo"><img src="https://files.catbox.moe/bhkin5.png" alt="Logo"></div>
 <div class="brand">BEACHX</div>
@@ -107,6 +119,7 @@ body::after{content:'';position:absolute;bottom:-30%;right:-20%;width:500px;heig
 </div>
 </div>
 
+<!-- PAGE 3: DEV PANEL -->
 <div class="page" id="pageDev">
 <div class="logo"><img src="https://files.catbox.moe/bhkin5.png" alt="Logo"></div>
 <div class="brand">DEV PANEL</div>
@@ -128,7 +141,7 @@ body::after{content:'';position:absolute;bottom:-30%;right:-20%;width:500px;heig
 
 <script>
 /* ============================================
-   AKUN HARDCODED — EDIT MANUAL DI SINI
+   AKUN HARDCODED
    ============================================ */
 var DEFAULT_ACCOUNTS = {
   "DevOffc": {
@@ -136,22 +149,22 @@ var DEFAULT_ACCOUNTS = {
     role: "developer",
     permanent: true
   },
-  "user1": {
-    password: "pass123",
+  "Hallowz": {
+    password: "Hallowz1",
     role: "user",
     permanent: true
   },
-  "user2": {
-    password: "pass456",
+  "Sammy": {
+    password: "Sammy12",
+    role: "user",
+    permanent: true
+  },
+  "DemoAcc": {
+    password: "123",
     role: "user",
     permanent: false,
     expiresAt: 1798761600000,
     days: 30
-  },
-  "user3": {
-    password: "pass789",
-    role: "user",
-    permanent: true
   }
 };
 
@@ -191,6 +204,26 @@ return changed;
 checkExpired();
 setInterval(checkExpired, 60000);
 
+/* ============================================
+   INTRO VIDEO
+   ============================================ */
+function skipIntro(){
+document.getElementById('pageIntro').classList.remove('active');
+document.getElementById('pageSplash').classList.add('active');
+var v = document.getElementById('introVideo');
+if(v){ v.pause(); v.src = ''; }
+}
+
+var introVideo = document.getElementById('introVideo');
+if(introVideo){
+introVideo.addEventListener('ended', function(){
+skipIntro();
+});
+}
+
+/* ============================================
+   MUSIC
+   ============================================ */
 var soundOn = false;
 var bgSound = document.getElementById('bgSound');
 var musicStarted = false;
@@ -218,6 +251,9 @@ showToast('Sound: OFF');
 }
 }
 
+/* ============================================
+   NAVIGATION
+   ============================================ */
 function showPage(id){
 document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
 document.getElementById(id).classList.add('active');
@@ -240,6 +276,9 @@ var p=document.getElementById('password');
 p.type=p.type==='password'?'text':'password';
 }
 
+/* ============================================
+   LOGIN
+   ============================================ */
 function doLogin(){
 var u=document.getElementById('username').value.trim();
 var p=document.getElementById('password').value.trim();
@@ -265,6 +304,9 @@ setTimeout(function(){window.location.href='index.html';},800);
 }
 }
 
+/* ============================================
+   KILL ACCOUNT
+   ============================================ */
 function killAccount(username){
 if(!confirm('Yakin mau hapus akun "'+username+'"?'))return;
 var acc = getAccounts();
@@ -278,6 +320,9 @@ showToast('🗑️ Akun '+username+' dihapus!');
 renderAccounts();
 }
 
+/* ============================================
+   RENDER ACCOUNTS
+   ============================================ */
 function renderAccounts(){
 checkExpired();
 var acc = getAccounts();
@@ -324,6 +369,9 @@ timerInfo+
 list.innerHTML = html;
 }
 
+/* ============================================
+   TOAST
+   ============================================ */
 function showToast(m, err){
 var el=document.getElementById('toast');
 el.textContent=m;
@@ -332,6 +380,9 @@ clearTimeout(el._t);
 el._t=setTimeout(function(){el.classList.remove('show')},2800);
 }
 
+/* ============================================
+   AUTO LOGIN
+   ============================================ */
 var logged = localStorage.getItem('beachx_logged');
 var role = localStorage.getItem('beachx_role');
 if(logged === 'true' && role === 'developer'){
