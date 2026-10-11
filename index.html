@@ -45,7 +45,7 @@ body::before{content:'';position:fixed;top:-20%;left:-10%;width:400px;height:400
 .ni .icon{font-size:22px}
 .modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;z-index:200;padding:24px}
 .modal.show{display:flex}
-.modal-box{background:var(--c);backdrop-filter:blur(30px);border-radius:28px;padding:28px;width:100%;max-width:360px;border:1px solid var(--b);animation:modalIn .3s ease;box-shadow:0 30px 80px rgba(0,0,0,.8);max-height:80vh;overflow-y:auto}
+.modal-box{background:var(--c);backdrop-filter:blur(30px);border-radius:28px;padding:28px;width:100%;max-width:380px;border:1px solid var(--b);animation:modalIn .3s ease;box-shadow:0 30px 80px rgba(0,0,0,.8);max-height:85vh;overflow-y:auto}
 @keyframes modalIn{from{opacity:0;transform:scale(.95) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
 .modal-box h3{font-size:20px;font-weight:700;margin-bottom:10px}
 .modal-box p{font-size:13px;color:var(--d);margin-bottom:20px;line-height:1.7}
@@ -59,8 +59,6 @@ body::before{content:'';position:fixed;top:-20%;left:-10%;width:400px;height:400
 .menu-list .item .left .info .t{font-size:14px;font-weight:600}
 .menu-list .item .left .info .s{font-size:11px;color:var(--d);margin-top:2px}
 .menu-list .item .arrow{color:var(--d);font-size:16px}
-
-/* FORM BUG */
 .bug-form{display:flex;flex-direction:column;gap:14px;margin-bottom:16px}
 .bug-form .input-group{display:flex;flex-direction:column;gap:6px}
 .bug-form .input-group label{font-size:11px;color:var(--d);letter-spacing:1px;text-transform:uppercase}
@@ -68,19 +66,12 @@ body::before{content:'';position:fixed;top:-20%;left:-10%;width:400px;height:400
 .bug-form .input-group select{width:100%;padding:14px 16px;border-radius:14px;border:1px solid var(--b);background:rgba(0,0,0,.3);color:#fff;font-size:14px;outline:none;transition:.3s;-webkit-appearance:none;appearance:none}
 .bug-form .input-group input:focus,
 .bug-form .input-group select:focus{border-color:var(--p);box-shadow:0 0 0 4px rgba(0,212,255,.05)}
-.bug-form .input-group select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L2 4h8z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
 .bug-form .input-group select option{background:#111118;color:#fff}
-
-.btn-send{width:100%;padding:16px;border-radius:14px;border:none;background:linear-gradient(135deg,#00d4ff,#0088cc);color:#000;font-weight:700;font-size:14px;cursor:pointer;letter-spacing:2px;transition:.3s;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(0,212,255,.2)}
-.btn-send:hover{transform:translateY(-2px);box-shadow:0 15px 40px rgba(0,212,255,.3)}
-.btn-send:active{transform:scale(.98)}
-.btn-send:disabled{opacity:.6;cursor:not-allowed;transform:none}
-
+.btn-send{width:100%;padding:16px;border-radius:14px;border:none;background:linear-gradient(135deg,#00d4ff,#0088cc);color:#000;font-weight:700;font-size:14px;cursor:pointer;letter-spacing:2px;transition:.3s;box-shadow:0 10px 30px rgba(0,212,255,.2)}
+.btn-send:hover{transform:translateY(-2px)}
 .warning-box{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:14px;padding:14px 16px;margin-bottom:16px;display:flex;gap:10px;align-items:flex-start}
 .warning-box .ic{font-size:18px}
 .warning-box .text{font-size:12px;color:#f59e0b;line-height:1.6}
-
-/* LOADING ANIMATION */
 .loading-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.95);backdrop-filter:blur(20px);display:none;align-items:center;justify-content:center;z-index:500;flex-direction:column;gap:24px}
 .loading-overlay.show{display:flex}
 .loading-spinner{width:80px;height:80px;border-radius:50%;border:4px solid rgba(0,212,255,.1);border-top:4px solid var(--p);animation:spin 1s linear infinite;position:relative}
@@ -91,10 +82,34 @@ body::before{content:'';position:fixed;top:-20%;left:-10%;width:400px;height:400
 .loading-bar{width:200px;height:4px;background:rgba(255,255,255,.05);border-radius:10px;overflow:hidden;margin-top:8px}
 .loading-bar .fill{height:100%;background:linear-gradient(90deg,#00d4ff,#a855f7);width:0%;transition:width .3s ease}
 .loading-status{font-size:11px;color:var(--d);margin-top:8px;letter-spacing:1px;min-height:16px}
-
-.toast{position:fixed;bottom:110px;left:50%;transform:translateX(-50%);background:rgba(0,212,255,.95);color:#000;padding:14px 28px;border-radius:60px;font-size:13px;font-weight:600;display:none;z-index:600;box-shadow:0 10px 40px rgba(0,212,255,.3)}
+.toast{position:fixed;bottom:110px;left:50%;transform:translateX(-50%);background:rgba(0,212,255,.95);color:#000;padding:14px 28px;border-radius:60px;font-size:13px;font-weight:600;display:none;z-index:600;box-shadow:0 10px 40px rgba(0,212,255,.3);max-width:90%;text-align:center}
 .toast.show{display:block;animation:toastIn .3s ease}
+.toast.error{background:rgba(239,68,68,.95);color:#fff}
 @keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+/* CHAT */
+.chat-container{display:flex;flex-direction:column;height:55vh;background:rgba(0,0,0,.3);border:1px solid var(--b);border-radius:16px;padding:14px;margin-bottom:10px}
+.chat-messages{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding-right:6px}
+.chat-messages::-webkit-scrollbar{width:3px}
+.chat-messages::-webkit-scrollbar-thumb{background:rgba(0,212,255,.2);border-radius:10px}
+.chat-bubble{max-width:80%;padding:10px 14px;border-radius:16px;font-size:13px;word-wrap:break-word;animation:bubbleIn .2s ease}
+@keyframes bubbleIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.chat-bubble.me{align-self:flex-end;background:linear-gradient(135deg,#00d4ff,#0088cc);color:#000;border-bottom-right-radius:4px}
+.chat-bubble.other{align-self:flex-start;background:rgba(255,255,255,.06);color:#fff;border-bottom-left-radius:4px}
+.chat-bubble .sender{font-size:9px;opacity:.7;margin-bottom:3px;letter-spacing:1px;font-weight:700}
+.chat-bubble .role-tag{font-size:8px;padding:1px 6px;border-radius:10px;margin-left:4px;font-weight:700;letter-spacing:.5px;vertical-align:middle}
+.chat-bubble .role-tag.owner{background:rgba(245,158,11,.25);color:#f59e0b}
+.chat-bubble .role-tag.admin{background:rgba(0,212,255,.2);color:var(--p)}
+.chat-input-row{display:flex;gap:8px}
+.chat-input-row input{flex:1;padding:12px 16px;border-radius:14px;border:1px solid var(--b);background:rgba(0,0,0,.3);color:#fff;font-size:13px;outline:none}
+.chat-input-row input:focus{border-color:var(--p)}
+.chat-input-row button{padding:12px 20px;border-radius:14px;border:none;background:linear-gradient(135deg,#00d4ff,#0088cc);color:#000;font-weight:700;font-size:13px;cursor:pointer}
+.user-action-row{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+.user-action-row button{padding:6px 10px;font-size:10px;border-radius:8px;border:none;cursor:pointer;font-weight:700;letter-spacing:.5px}
+.user-action-row .btn-admin{background:rgba(0,212,255,.15);color:var(--p)}
+.user-action-row .btn-mute{background:rgba(245,158,11,.15);color:#f59e0b}
+.user-action-row .btn-kick{background:rgba(239,68,68,.15);color:#ef4444}
+.user-action-row .btn-ban{background:rgba(220,38,38,.25);color:#ff6b6b}
 </style>
 </head>
 <body>
@@ -119,8 +134,8 @@ body::before{content:'';position:fixed;top:-20%;left:-10%;width:400px;height:400
 </div>
 
 <div class="stats">
-<div class="stat"><div class="num">0</div><div class="lbl">Online</div></div>
-<div class="stat"><div class="num">0</div><div class="lbl">Connections</div></div>
+<div class="stat"><div class="num" id="statOnline">0</div><div class="lbl">Online</div></div>
+<div class="stat"><div class="num" id="statConn">0</div><div class="lbl">Connections</div></div>
 <div class="stat"><div class="num" id="expiryDate">9/7/2029</div><div class="lbl">Expiration</div></div>
 </div>
 
@@ -163,13 +178,13 @@ body::before{content:'';position:fixed;top:-20%;left:-10%;width:400px;height:400
 </div>
 
 <div class="nav">
-<div class="ni active"><div class="icon">🏠</div>Home</div>
-<div class="ni" onclick="showToast('Chat segera hadir!')"><div class="icon">💬</div>Chat</div>
-<div class="ni" onclick="showToast('Users segera hadir!')"><div class="icon">👥</div>Users</div>
+<div class="ni active" id="navHome" onclick="switchTab('home',this)"><div class="icon">🏠</div>Home</div>
+<div class="ni" id="navChat" onclick="switchTab('chat',this)"><div class="icon">💬</div>Chat</div>
+<div class="ni" id="navUsers" onclick="switchTab('users',this)"><div class="icon">👥</div>Users</div>
 <div class="ni" onclick="logout()"><div class="icon">🚪</div>Logout</div>
 </div>
 
-<!-- MODAL -->
+<!-- MODAL UMUM -->
 <div class="modal" id="modalOverlay">
 <div class="modal-box">
 <h3 id="modalTitle">Title</h3>
@@ -178,7 +193,54 @@ body::before{content:'';position:fixed;top:-20%;left:-10%;width:400px;height:400
 </div>
 </div>
 
-<!-- LOADING OVERLAY -->
+<!-- MODAL CHAT GRUP -->
+<div class="modal" id="chatModal">
+<div class="modal-box" style="max-width:440px">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+<div>
+<h3 style="margin:0;font-size:18px">💬 BeachX Chat</h3>
+<p style="font-size:11px;color:var(--d);margin:2px 0 0">Grup chat • <span id="memberCount">0</span> member</p>
+</div>
+<button onclick="openGroupPanel()" style="width:auto;padding:8px 14px;font-size:11px;background:rgba(255,255,255,.05);border:1px solid var(--b);color:#fff;border-radius:10px;margin:0">⚙️</button>
+</div>
+
+<div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+<span id="myRoleBadge" style="font-size:10px;padding:3px 12px;border-radius:20px;background:rgba(0,212,255,.08);color:var(--p);border:1px solid rgba(0,212,255,.15);font-weight:700">MEMBER</span>
+<span id="groupStatus" style="font-size:10px;padding:3px 12px;border-radius:20px;background:rgba(74,222,128,.08);color:#4ade80;border:1px solid rgba(74,222,128,.15);font-weight:700">● OPEN</span>
+</div>
+
+<div class="chat-container">
+<div class="chat-messages" id="chatMessages"></div>
+</div>
+<div class="chat-input-row">
+<input type="text" id="chatInput" placeholder="Ketik pesan..." onkeydown="if(event.key==='Enter') sendChat()">
+<button onclick="sendChat()">Kirim</button>
+</div>
+<button onclick="closeChat()">Tutup</button>
+</div>
+</div>
+
+<!-- MODAL GROUP PANEL -->
+<div class="modal" id="groupPanel">
+<div class="modal-box" style="max-width:440px">
+<h3>⚙️ Group Settings</h3>
+<p style="font-size:11px;color:var(--d);margin-bottom:16px">Kelola member grup</p>
+<div id="groupPanelContent"></div>
+<button onclick="closeGroupPanel()">Tutup</button>
+</div>
+</div>
+
+<!-- MODAL USERS -->
+<div class="modal" id="usersModal">
+<div class="modal-box" style="max-width:420px">
+<h3>👥 Online Users</h3>
+<p style="font-size:11px;color:var(--d);margin-bottom:16px">Daftar user yang online</p>
+<div id="usersList"></div>
+<button onclick="closeUsers()">Tutup</button>
+</div>
+</div>
+
+<!-- LOADING -->
 <div class="loading-overlay" id="loadingOverlay">
 <div class="loading-spinner"></div>
 <div class="loading-text">Sending...</div>
@@ -193,8 +255,10 @@ body::before{content:'';position:fixed;top:-20%;left:-10%;width:400px;height:400
 if(localStorage.getItem('beachx_logged')!=='true'){
 window.location.href='account.html';
 }
-document.getElementById('displayName').textContent=localStorage.getItem('beachx_user')||'User';
+var currentUser = localStorage.getItem('beachx_user')||'User';
+document.getElementById('displayName').textContent = currentUser;
 
+/* THEMES */
 var themes={
 blue:{p:'#00d4ff',bg:'#05060a',c:'rgba(17,17,24,.7)'},
 red:{p:'#ef4444',bg:'#0a0505',c:'rgba(24,17,17,.7)'},
@@ -203,7 +267,6 @@ purple:{p:'#a855f7',bg:'#0a050f',c:'rgba(21,17,24,.7)'},
 orange:{p:'#f59e0b',bg:'#0a0805',c:'rgba(24,21,17,.7)'},
 pink:{p:'#ec4899',bg:'#0a050a',c:'rgba(24,17,21,.7)'}
 };
-
 function setTheme(n,el){
 var t=themes[n];
 document.documentElement.style.setProperty('--p',t.p);
@@ -216,6 +279,33 @@ localStorage.setItem('beachx_theme',n);
 showToast('Tema: '+n);
 }
 
+/* TAB */
+function switchTab(tab, el){
+document.querySelectorAll('.ni').forEach(function(n){n.classList.remove('active')});
+if(el) el.classList.add('active');
+if(tab === 'chat') openChat();
+else if(tab === 'users') openUsers();
+}
+
+/* LOGOUT */
+function logout(){
+if(!confirm('Yakin mau logout?'))return;
+localStorage.removeItem('beachx_logged');
+localStorage.removeItem('beachx_user');
+localStorage.removeItem('beachx_role');
+window.location.href='account.html';
+}
+
+/* TOAST */
+function showToast(m, err){
+var el=document.getElementById('toast');
+el.textContent=m;
+el.className = 'toast show' + (err?' error':'');
+clearTimeout(el._t);
+el._t=setTimeout(function(){el.classList.remove('show')},2500);
+}
+
+/* MODAL UMUM */
 var modals={
 tools:{
 title:'🛠️ Tools',
@@ -231,7 +321,6 @@ title:'ℹ️ Info',
 content:'<p>BEACHX v1.0 — Aplikasi bug menu untuk gaya-gayaan. Dibuat oleh BeachX Team. Enjoy!</p>'
 }
 };
-
 function openModal(k){
 var m=modals[k];
 if(!m)return;
@@ -240,45 +329,25 @@ document.getElementById('modalContent').innerHTML=m.content;
 document.getElementById('modalOverlay').classList.add('show');
 }
 function closeModal(){document.getElementById('modalOverlay').classList.remove('show')}
-function logout(){
-if(!confirm('Yakin mau logout?'))return;
-localStorage.removeItem('beachx_logged');
-localStorage.removeItem('beachx_user');
-window.location.href='account.html';
-}
-function showToast(m){
-var el=document.getElementById('toast');
-el.textContent=m;el.classList.add('show');
-clearTimeout(el._t);
-el._t=setTimeout(function(){el.classList.remove('show')},2500);
-}
 
-/* ============================================
-   FORM BUG
-   ============================================ */
+/* FORM BUG */
 function openBugForm(type){
 var isCustom = (type === 'custom');
 var title = isCustom ? '⚙️ Custom Bug' : '💬 Bug WA';
-var types = isCustom 
-? ['Custom Delay', 'Custom Loops', 'Custom Message', 'Custom Multi']
-: ['Crash WA', 'Freeze WA', 'Lock WA', 'Spam WA', 'Bug Call', 'Bug Chat'];
+var types = isCustom
+? ['Custom Delay','Custom Loops','Custom Message','Custom Multi']
+: ['Crash WA','Freeze WA','Lock WA','Spam WA','Bug Call','Bug Chat'];
 
-var warning = isCustom 
+var warning = isCustom
 ? '<div class="warning-box"><span class="ic">⚠️</span><div class="text">Custom Bug tidak direkomendasikan. Hasilnya kurang gacor dibanding Bug WA biasa.</div></div>'
 : '';
 
-var html = warning + 
+var html = warning +
 '<div class="bug-form">'+
-'<div class="input-group">'+
-'<label>Nomor Target</label>'+
-'<input type="text" id="targetInput" placeholder="Exm: 62xxx" autocomplete="off">'+
-'</div>'+
-'<div class="input-group">'+
-'<label>Type of Bug</label>'+
-'<select id="typeInput">'+
+'<div class="input-group"><label>Nomor Target</label><input type="text" id="targetInput" placeholder="Exm: 62xxx" autocomplete="off"></div>'+
+'<div class="input-group"><label>Type of Bug</label><select id="typeInput">'+
 types.map(function(t){return '<option value="'+t+'">'+t+'</option>'}).join('')+
-'</select>'+
-'</div>'+
+'</select></div>'+
 '<button class="btn-send" id="btnSend" onclick="sendBug(\''+type+'\')">SEND →</button>'+
 '</div>';
 
@@ -286,22 +355,12 @@ document.getElementById('modalTitle').textContent=title;
 document.getElementById('modalContent').innerHTML=html;
 document.getElementById('modalOverlay').classList.add('show');
 }
-
 function sendBug(type){
 var target = document.getElementById('targetInput').value.trim();
 var bugType = document.getElementById('typeInput').value;
+if(!target){showToast('Isi nomor target dulu!');return}
+if(target.length < 8){showToast('Nomor target tidak valid!');return}
 
-if(!target){
-showToast('Isi nomor target dulu!');
-return;
-}
-
-if(target.length < 8){
-showToast('Nomor target tidak valid!');
-return;
-}
-
-/* Tampilkan loading overlay */
 var overlay = document.getElementById('loadingOverlay');
 var fill = document.getElementById('loadingFill');
 var status = document.getElementById('loadingStatus');
@@ -320,7 +379,6 @@ var steps = [
 { p: 95, s: 'Menyelesaikan...', d: 'Hampir selesai' },
 { p: 100, s: 'Berhasil!', d: bugType + ' terkirim ke ' + target }
 ];
-
 var i = 0;
 var interval = setInterval(function(){
 if(i >= steps.length){
@@ -340,59 +398,324 @@ i++;
 }, 700);
 }
 
-/* ============================================
-   TOOLS
-   ============================================ */
+/* TOOLS */
 function showDeviceInfo(){
 var ua=navigator.userAgent;
 var platform=navigator.platform;
 var ram=navigator.deviceMemory?navigator.deviceMemory+' GB':'Unknown';
-var info='<p><b>Device Info</b><br>'+
-'Platform: '+platform+'<br>'+
-'RAM: '+ram+'<br>'+
-'User Agent: '+ua+'</p>';
+var info='<p><b>Device Info</b><br>Platform: '+platform+'<br>RAM: '+ram+'<br>User Agent: '+ua+'</p>';
 document.getElementById('modalContent').innerHTML=info+'<button onclick="openModal(\'tools\')">Kembali</button>';
 }
-
 function showBatteryInfo(){
 if(navigator.getBattery){
 navigator.getBattery().then(function(b){
 var level=Math.round(b.level*100);
 var charging=b.charging?'⚡ Charging':'🔋 Not charging';
-var info='<p><b>Battery Info</b><br>'+
-'Level: '+level+'%<br>'+
-'Status: '+charging+'</p>';
-document.getElementById('modalContent').innerHTML=info+'<button onclick="openModal(\'tools\')">Kembali</button>';
+document.getElementById('modalContent').innerHTML='<p><b>Battery Info</b><br>Level: '+level+'%<br>Status: '+charging+'</p><button onclick="openModal(\'tools\')">Kembali</button>';
 });
 }else{
 document.getElementById('modalContent').innerHTML='<p>Battery API tidak didukung.</p><button onclick="openModal(\'tools\')">Kembali</button>';
 }
 }
-
 function showNetworkInfo(){
 var conn=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
 var type=conn?conn.effectiveType:'Unknown';
 var down=conn?conn.downlink:'Unknown';
-var info='<p><b>Network Info</b><br>'+
-'Type: '+type+'<br>'+
-'Downlink: '+down+' Mbps</p>';
-document.getElementById('modalContent').innerHTML=info+'<button onclick="openModal(\'tools\')">Kembali</button>';
+document.getElementById('modalContent').innerHTML='<p><b>Network Info</b><br>Type: '+type+'<br>Downlink: '+down+' Mbps</p><button onclick="openModal(\'tools\')">Kembali</button>';
 }
-
 function showScreenInfo(){
 var w=window.screen.width;
 var h=window.screen.height;
 var dpr=window.devicePixelRatio;
-var info='<p><b>Screen Info</b><br>'+
-'Resolusi: '+w+'x'+h+'<br>'+
-'Pixel Ratio: '+dpr+'</p>';
-document.getElementById('modalContent').innerHTML=info+'<button onclick="openModal(\'tools\')">Kembali</button>';
+document.getElementById('modalContent').innerHTML='<p><b>Screen Info</b><br>Resolusi: '+w+'x'+h+'<br>Pixel Ratio: '+dpr+'</p><button onclick="openModal(\'tools\')">Kembali</button>';
 }
 
-var e=new Date();
+/* ============================================
+   CHAT GRUP
+   ============================================ */
+var CHAT_KEY = 'beachx_chat';
+var GROUP_KEY = 'beachx_group';
+var GROUP_OWNER = 'Sammy';
+
+function getGroup(){
+try{
+var g = JSON.parse(localStorage.getItem(GROUP_KEY));
+if(!g){
+g = {name:'BeachX Chat',owner:GROUP_OWNER,admins:[],muted:[],banned:[],open:true};
+localStorage.setItem(GROUP_KEY, JSON.stringify(g));
+}
+return g;
+}catch(e){
+return {name:'BeachX Chat',owner:GROUP_OWNER,admins:[],muted:[],banned:[],open:true};
+}
+}
+function saveGroup(g){localStorage.setItem(GROUP_KEY, JSON.stringify(g));}
+
+function getChat(){
+try{return JSON.parse(localStorage.getItem(CHAT_KEY)) || [];}catch(e){return []}
+}
+function saveChat(msgs){localStorage.setItem(CHAT_KEY, JSON.stringify(msgs));}
+
+function isOwner(u){return u === GROUP_OWNER}
+function isAdmin(u){return getGroup().admins.indexOf(u) !== -1;}
+function isMuted(u){return getGroup().muted.indexOf(u) !== -1;}
+function isBanned(u){return getGroup().banned.indexOf(u) !== -1;}
+function canModerate(u){return isOwner(u) || isAdmin(u);}
+function getRole(u){
+if(isOwner(u)) return 'OWNER';
+if(isAdmin(u)) return 'ADMIN';
+return 'MEMBER';
+}
+
+function openChat(){
+document.getElementById('chatModal').classList.add('show');
+var g = getGroup();
+var role = getRole(currentUser);
+
+var badge = document.getElementById('myRoleBadge');
+badge.textContent = role;
+badge.style.color = isOwner(currentUser) ? '#f59e0b' : (isAdmin(currentUser) ? '#00d4ff' : '#888');
+badge.style.borderColor = isOwner(currentUser) ? 'rgba(245,158,11,.3)' : (isAdmin(currentUser) ? 'rgba(0,212,255,.3)' : 'rgba(255,255,255,.1)');
+
+var status = document.getElementById('groupStatus');
+status.textContent = g.open ? '● OPEN' : '🔒 LOCKED';
+status.style.color = g.open ? '#4ade80' : '#ef4444';
+
+document.getElementById('memberCount').textContent = getMemberList().length;
+renderChat();
+}
+function closeChat(){document.getElementById('chatModal').classList.remove('show')}
+
+function getMemberList(){
+var acc = {};
+try{acc = JSON.parse(localStorage.getItem('beachx_accounts')) || {};}catch(e){}
+var members = [];
+members.push(currentUser);
+Object.keys(acc).forEach(function(k){ if(members.indexOf(k) === -1) members.push(k); });
+['Hallowz','Sammy','Guest_01','Guest_02'].forEach(function(k){ if(members.indexOf(k) === -1) members.push(k); });
+var g = getGroup();
+return members.filter(function(m){return g.banned.indexOf(m) === -1;});
+}
+
+function renderChat(){
+var msgs = getChat();
+var box = document.getElementById('chatMessages');
+if(!box) return;
+box.innerHTML = '';
+
+if(msgs.length === 0){
+box.innerHTML = '<div style="text-align:center;color:#444;font-size:12px;padding:20px">Belum ada pesan. Mulai ngobrol!</div>';
+return;
+}
+
+msgs.forEach(function(m){
+var isMe = (m.user === currentUser);
+var div = document.createElement('div');
+div.className = 'chat-bubble ' + (isMe ? 'me' : 'other');
+var tag = '';
+if(m.user === GROUP_OWNER) tag = '<span class="role-tag owner">OWNER</span>';
+else if(isAdmin(m.user)) tag = '<span class="role-tag admin">ADMIN</span>';
+div.innerHTML = (isMe?'':'<div class="sender">'+m.user+tag+'</div>') + m.text;
+box.appendChild(div);
+});
+box.scrollTop = box.scrollHeight;
+}
+
+function sendChat(){
+var input = document.getElementById('chatInput');
+var text = input.value.trim();
+if(!text) return;
+
+var g = getGroup();
+if(isBanned(currentUser)){showToast('❌ Kamu dibanned dari grup!',true);return}
+if(isMuted(currentUser)){showToast('🔇 Kamu dimute!',true);return}
+if(!g.open && !canModerate(currentUser)){showToast('🔒 Grup sedang dikunci!',true);return}
+
+var msgs = getChat();
+msgs.push({ user: currentUser, text: text, time: Date.now() });
+if(msgs.length > 200) msgs = msgs.slice(-200);
+saveChat(msgs);
+input.value = '';
+renderChat();
+botReply();
+}
+
+var botReplies = ['Nice! 🔥','Wkwkwk bener juga 😂','Oke siap bro','Mantap jiwa 💪','Gaskeun! 🚀','Hmm menarik...','Setuju sih','Gak nyangka 😅','Keren parah','Bisa dijelasin?'];
+var botNames = ['Sammy','Hallowz','Guest_01','Guest_02'];
+
+function botReply(){
+setTimeout(function(){
+var g = getGroup();
+var available = botNames.filter(function(b){return g.banned.indexOf(b) === -1 && b !== currentUser;});
+if(available.length === 0) return;
+
+var bot = available[Math.floor(Math.random()*available.length)];
+var text = botReplies[Math.floor(Math.random()*botReplies.length)];
+var msgs = getChat();
+msgs.push({ user: bot, text: text, time: Date.now(), isBot: true });
+if(msgs.length > 200) msgs = msgs.slice(-200);
+saveChat(msgs);
+renderChat();
+}, 1500 + Math.random()*2500);
+}
+
+/* GROUP PANEL */
+function openGroupPanel(){
+if(!canModerate(currentUser)){showToast('❌ Cuma owner & admin!',true);return}
+closeChat();
+document.getElementById('groupPanel').classList.add('show');
+renderGroupPanel();
+}
+function closeGroupPanel(){document.getElementById('groupPanel').classList.remove('show')}
+
+function renderGroupPanel(){
+var g = getGroup();
+var content = document.getElementById('groupPanelContent');
+var members = getMemberList();
+var html = '';
+
+if(isOwner(currentUser)){
+html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:rgba(0,0,0,.3);border:1px solid var(--b);border-radius:14px;margin-bottom:12px">'+
+'<div><div style="font-size:13px;font-weight:700">Status Grup</div><div style="font-size:11px;color:var(--d)">'+(g.open?'Open — semua bisa chat':'Locked — cuma admin')+'</div></div>'+
+'<button onclick="toggleGroup()" style="width:auto;padding:8px 16px;font-size:11px;background:'+(g.open?'rgba(239,68,68,.15)':'rgba(74,222,128,.15)')+';color:'+(g.open?'#ef4444':'#4ade80')+';border:none;border-radius:10px;margin:0">'+(g.open?'LOCK':'OPEN')+'</button>'+
+'</div>';
+}
+
+html += '<div style="font-size:11px;color:var(--d);letter-spacing:1px;margin-bottom:8px">MEMBER ('+members.length+')</div>';
+members.forEach(function(m){
+var role = getRole(m);
+var roleColor = role==='OWNER'?'#f59e0b':(role==='ADMIN'?'#00d4ff':'#888');
+var actions = '';
+
+if(isOwner(currentUser) && m !== GROUP_OWNER){
+actions += '<button class="btn-admin" onclick="toggleAdmin(\''+m+'\')">'+(isAdmin(m)?'DEMOTE':'ADMIN')+'</button>';
+actions += '<button class="btn-mute" onclick="toggleMute(\''+m+'\')">'+(isMuted(m)?'UNMUTE':'MUTE')+'</button>';
+actions += '<button class="btn-ban" onclick="toggleBan(\''+m+'\')">BAN</button>';
+}
+if(isAdmin(currentUser) && !isOwner(currentUser) && m !== currentUser && !isOwner(m) && !isAdmin(m)){
+actions += '<button class="btn-mute" onclick="toggleMute(\''+m+'\')">'+(isMuted(m)?'UNMUTE':'MUTE')+'</button>';
+actions += '<button class="btn-kick" onclick="kickUser(\''+m+'\')">KICK</button>';
+}
+
+html += '<div style="padding:12px 14px;background:rgba(0,0,0,.3);border:1px solid var(--b);border-radius:14px;margin-bottom:8px">'+
+'<div style="font-size:13px;font-weight:700;color:#fff">'+m+' <span style="font-size:9px;color:'+roleColor+';margin-left:4px">'+role+'</span>'+(isMuted(m)?' <span style="font-size:9px;color:#f59e0b">🔇</span>':'')+'</div>'+
+(actions?'<div class="user-action-row">'+actions+'</div>':'')+
+'</div>';
+});
+content.innerHTML = html;
+}
+
+function toggleGroup(){
+var g = getGroup();
+g.open = !g.open;
+saveGroup(g);
+showToast(g.open ? '🔓 Grup dibuka' : '🔒 Grup dikunci');
+renderGroupPanel();
+}
+function toggleAdmin(user){
+if(!isOwner(currentUser)){showToast('❌ Cuma owner!',true);return}
+var g = getGroup();
+var i = g.admins.indexOf(user);
+if(i === -1){g.admins.push(user);showToast('✅ '+user+' jadi admin');}
+else{g.admins.splice(i,1);showToast('⬇️ '+user+' diturunkan');}
+saveGroup(g);
+renderGroupPanel();
+}
+function toggleMute(user){
+if(!canModerate(currentUser)){showToast('❌ Gak punya akses!',true);return}
+if(user === GROUP_OWNER){showToast('❌ Gak bisa mute owner!',true);return}
+var g = getGroup();
+var i = g.muted.indexOf(user);
+if(i === -1){g.muted.push(user);showToast('🔇 '+user+' dimute');}
+else{g.muted.splice(i,1);showToast('🔊 '+user+' diunmute');}
+saveGroup(g);
+renderGroupPanel();
+}
+function toggleBan(user){
+if(!isOwner(currentUser)){showToast('❌ Cuma owner!',true);return}
+if(user === GROUP_OWNER){showToast('❌ Gak bisa ban owner!',true);return}
+var g = getGroup();
+var i = g.banned.indexOf(user);
+if(i === -1){
+g.banned.push(user);
+g.admins = g.admins.filter(function(a){return a !== user});
+showToast('🚫 '+user+' dibanned');
+}else{
+g.banned.splice(i,1);
+showToast('✅ '+user+' diunban');
+}
+saveGroup(g);
+renderGroupPanel();
+}
+function kickUser(user){
+if(!canModerate(currentUser)){showToast('❌ Gak punya akses!',true);return}
+if(user === GROUP_OWNER){showToast('❌ Gak bisa kick owner!',true);return}
+var g = getGroup();
+g.banned.push(user);
+g.admins = g.admins.filter(function(a){return a !== user});
+saveGroup(g);
+showToast('👢 '+user+' dikick');
+renderGroupPanel();
+}
+
+/* USERS */
+function openUsers(){
+document.getElementById('usersModal').classList.add('show');
+renderUsers();
+}
+function closeUsers(){document.getElementById('usersModal').classList.remove('show')}
+
+function renderUsers(){
+var list = document.getElementById('usersList');
+if(!list) return;
+
+var acc = {};
+try{acc = JSON.parse(localStorage.getItem('beachx_accounts')) || {};}catch(e){}
+
+var users = [];
+users.push({ name: currentUser, role: localStorage.getItem('beachx_role')||'user', online: true });
+
+Object.keys(acc).forEach(function(k){
+if(k === currentUser) return;
+users.push({ name: k, role: acc[k].role||'user', online: Math.random() > 0.3 });
+});
+
+['Hallowz','Sammy','Guest_01','Guest_02'].forEach(function(k){
+if(k === currentUser) return;
+if(users.find(function(u){return u.name === k})) return;
+users.push({ name: k, role: 'user', online: true });
+});
+
+var html = '';
+users.forEach(function(u){
+var isDev = u.role === 'developer';
+var badge = isDev ? '<span class="u-badge dev">DEV</span>' : '<span class="u-badge">USER</span>';
+html += '<div class="user-item" style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(0,0,0,.3);border:1px solid var(--b);border-radius:14px;margin-bottom:10px">'+
+'<div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#00d4ff,#a855f7);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#000;flex-shrink:0">'+u.name.charAt(0).toUpperCase()+'</div>'+
+'<div style="flex:1;text-align:left">'+
+'<div style="font-size:14px;font-weight:700">'+u.name+'</div>'+
+'<div style="font-size:11px;color:'+(u.online?'#4ade80':'#666')+';margin-top:2px">● '+(u.online?'Online':'Offline')+'</div>'+
+'</div>'+
+badge+
+'</div>';
+});
+list.innerHTML = html;
+}
+
+/* STATS */
+function updateStats(){
+document.getElementById('statOnline').textContent = Math.floor(Math.random()*15)+5;
+document.getElementById('statConn').textContent = Math.floor(Math.random()*50)+10;
+}
+updateStats();
+setInterval(updateStats, 5000);
+
+/* EXPIRY */
+var e = new Date();
 e.setFullYear(e.getFullYear()+3);
 document.getElementById('expiryDate').textContent=(e.getMonth()+1)+'/'+e.getDate()+'/'+e.getFullYear();
 
+/* LOAD THEME */
 var saved=localStorage.getItem('beachx_theme')||'blue';
 var t2=themes[saved];
 if(t2){
@@ -403,4 +726,4 @@ document.getElementById('themeName').textContent=saved.charAt(0).toUpperCase()+s
 }
 </script>
 </body>
-</html>
+   </html>
